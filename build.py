@@ -221,7 +221,9 @@ footer p{{color:var(--mute);font-size:14px}}
  .rw>summary::after{{margin-left:calc(1.1em + 14px)}}
  .dm{{margin-left:calc(1.1em + 14px);flex-basis:100%}}
  .rwbody{{padding:18px 16px 22px}}
- .card,.opt{{padding:18px 16px;gap:14px}}
+ .card,.opt{{padding:18px 16px;gap:6px;flex-direction:column}}
+ .card h3,.opt h3{{font-size:17px}}
+ .tile .l{{font-size:13px}}
  .no,.opt .k{{font-size:38px}}
  .tile{{padding:16px 14px}}
 }}
