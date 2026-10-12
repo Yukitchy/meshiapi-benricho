@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>めしあぴ便利帳</title>
+<meta name="description" content="運用型広告研究所の鮮度チェックと、AIでできること10案">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="website"><meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="めしあぴ便利帳"><meta property="og:description" content="運用型広告研究所の鮮度チェックと、AIでできること10案">
+<meta property="og:url" content="https://yukitchy.github.io/meshiapi-benricho/"><meta property="og:image" content="https://yukitchy.github.io/meshiapi-benricho/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;min-width:0}
+html,body{max-width:100%;overflow-x:hidden}
+h1,h2,h3,h4,p{margin:0}
+.rw>summary::-webkit-details-marker{display:none}
+.rw>summary{list-style:none;cursor:pointer}
+.rwbody h4:first-child{margin-top:0}
+.orig summary{cursor:pointer}
+td,.dl,.note{text-wrap:pretty}
+td.main{text-wrap:balance}
+@media(max-width:720px){.chip{white-space:normal!important;max-width:100%}}
+
+:root{--bg:#fff;--ink:#0c0c0c;--mute:#444;--acc:#d9381e;--bd:3px;--font:"BIZ UDPGothic","Hiragino Sans","Noto Sans JP",sans-serif;--mono:"IBM Plex Mono","BIZ UDPGothic",ui-monospace,monospace}
+body{margin:0;padding:28px 20px 60px;font:400 15px/1.7 var(--font);color:var(--ink);background:var(--bg);word-break:auto-phrase}
+a{color:var(--ink);text-underline-offset:3px;text-decoration-thickness:1.5px}
+.wrap{max-width:1080px;margin:0 auto;border:var(--bd) solid var(--ink)}
+header{display:grid;grid-template-columns:1fr auto;border-bottom:var(--bd) solid var(--ink)}
+header h1{padding:26px 28px 18px;font-weight:700;font-size:clamp(34px,6vw,56px);line-height:1.1;letter-spacing:.02em;white-space:nowrap}
+.facts{margin:0;padding:0;list-style:none;border-left:var(--bd) solid var(--ink);display:grid;grid-template-rows:1fr auto;min-width:260px}
+.facts li{padding:10px 18px;font-size:12px;font-weight:700}
+.facts li:first-child{display:flex;align-items:center;justify-content:center;gap:10px}
+.facts li:first-child b{display:inline-block;color:var(--acc);font:700 18px/1.2 var(--mono);border:3px solid var(--acc);outline:1.5px solid var(--acc);outline-offset:-7px;padding:8px 12px;transform:rotate(-3deg);letter-spacing:.02em;background:#fff}
+.facts li:last-child{border-top:var(--bd) solid var(--ink)}
+.facts li:last-child b{font-size:15px;margin-left:6px}
+.lead{grid-column:1/-1;border-top:2px solid var(--ink);padding:10px 28px;font-weight:700;font-size:15px}
+section{border-bottom:var(--bd) solid var(--ink)}
+.sh{display:flex;align-items:center;gap:20px;border-bottom:var(--bd) solid var(--ink);padding:0 20px 0 0}
+.sh .n{flex:none;display:flex;align-items:center;justify-content:center;width:68px;height:68px;margin:-1px 0 -1px -1px;background:var(--acc);color:#fff;font:700 28px/1 var(--mono);border-right:var(--bd) solid var(--ink);outline:2px solid #fff;outline-offset:-8px}
+h2{font-weight:700;font-size:clamp(24px,4.4vw,34px);line-height:1.2;letter-spacing:.02em;white-space:nowrap}
+.in{padding:22px 26px 28px}
+h3.sub{font-weight:700;font-size:19px;margin:30px 0 8px;padding-left:12px;border-left:10px solid var(--ink)}
+h3.sub:first-child{margin-top:0}
+.note{font-size:14px;margin:0 0 12px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);border:var(--bd) solid var(--ink)}
+.tile{padding:10px 16px 12px;border-right:var(--bd) solid var(--ink)}
+.tile:last-child{border-right:0}
+.tile .l{display:block;font-size:13px;font-weight:700;border-bottom:1.5px solid var(--ink);padding-bottom:4px}
+.tile .v{display:block;margin-top:8px;font:700 clamp(36px,5vw,50px)/1 var(--mono);letter-spacing:-.04em;white-space:nowrap}
+.tile .v small{font:700 15px/1 var(--font);letter-spacing:0;margin-left:4px}
+.tile.hot .v{color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:14px;border:var(--bd) solid var(--ink)}
+th{text-align:left;font-size:13px;font-weight:700;padding:8px 12px;border:1.5px solid var(--ink);border-bottom:var(--bd) solid var(--ink);white-space:nowrap}
+td{padding:9px 12px;border:1.5px solid var(--ink);vertical-align:top;line-height:1.55}
+.num{text-align:right;font-family:var(--mono);font-weight:700;white-space:nowrap}
+th.num{font-family:var(--font)}
+.old{color:var(--acc);font-weight:700}
+.new{font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:4px 6px}
+.chip{font-size:12.5px;border:1.5px solid var(--ink);padding:0 7px;white-space:nowrap}
+.chip b{font-family:var(--mono);color:var(--acc)}
+.none{font-size:13px}
+.rws{display:grid;gap:0;border:var(--bd) solid var(--ink)}
+.rw{border-bottom:var(--bd) solid var(--ink)}
+.rw:last-child{border-bottom:0}
+.rw>summary,.rw.pend{display:flex;align-items:flex-start;gap:14px;padding:12px 16px}
+.rw>summary::after{content:"開く";margin-left:auto;flex:none;font-size:13px;font-weight:700;border:2px solid var(--ink);padding:1px 12px}
+.rw[open]>summary::after{content:"閉じる"}
+.dn{flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:var(--bd) solid var(--ink);font:700 18px/1 var(--mono)}
+.ds{display:flex;flex-direction:column;flex:1;gap:2px}
+.ds b{font-weight:700;line-height:1.5}
+.dl{font-size:13px;line-height:1.6}
+.dm{flex:none;font-size:13px;font-weight:700;color:var(--acc);white-space:nowrap}
+.rwbody{border-top:var(--bd) solid var(--ink);padding:20px 24px 24px;max-width:48em}
+.rwbody h4{font-size:17px;font-weight:700;margin:24px 0 8px;border-bottom:2px solid var(--ink);display:inline-block}
+.rwbody p{line-height:2;margin:0 0 12px}
+.rwbody ul{margin:0 0 14px;padding-left:1.3em;line-height:1.95}
+.orig{margin-top:22px;border-top:2px dashed var(--ink);padding-top:12px}
+.orig summary{font-size:14px;font-weight:700}
+.orig p{font-size:14px;line-height:1.9;margin-top:10px}
+.cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);border-top:var(--bd) solid var(--ink);border-left:var(--bd) solid var(--ink)}
+.card{display:flex;gap:14px;padding:14px 16px 16px;border-right:var(--bd) solid var(--ink);border-bottom:var(--bd) solid var(--ink)}
+.no{flex:none;display:flex;align-items:center;justify-content:center;width:56px;height:56px;border:var(--bd) solid var(--ink);font:700 26px/1 var(--mono);letter-spacing:-.04em}
+.card h3{font-size:17px;font-weight:700;line-height:1.45;margin:2px 0 8px}
+.io{display:grid;grid-template-columns:2.8em 1fr;gap:8px;font-size:14px;line-height:1.6;margin-top:6px}
+.lab{font-size:12px;font-weight:700;border:1.5px solid var(--ink);text-align:center;height:1.7em;line-height:1.6em;margin-top:.1em}
+.opts{display:grid;grid-template-columns:repeat(2,1fr);border:var(--bd) solid var(--ink)}
+.opt{display:flex;gap:16px;padding:16px 18px;border-right:var(--bd) solid var(--ink)}
+.opt:last-child{border-right:0}
+.opt .k{flex:none;display:flex;align-items:center;justify-content:center;width:56px;height:56px;background:var(--acc);color:#fff;font:700 30px/1 var(--mono);border:var(--bd) solid var(--ink)}
+.opt h3{font-size:18px;font-weight:700;line-height:1.45;margin:2px 0 6px}
+.opt p{font-size:14px}
+.ask{margin-top:16px;font-weight:700}
+footer{padding:18px 28px 22px}
+footer b{display:block;font-size:20px;font-weight:700;margin-bottom:4px}
+footer p{font-size:14px}
+@media(max-width:860px){
+ .tiles{grid-template-columns:repeat(2,1fr)}
+ .tile:nth-child(2){border-right:0}
+ .tile:nth-child(-n+2){border-bottom:var(--bd) solid var(--ink)}
+ .cards,.opts{grid-template-columns:1fr}
+ .opt{border-right:0;border-bottom:var(--bd) solid var(--ink)}
+ .opt:last-child{border-bottom:0}
+}
+@media(max-width:720px){
+ body{padding:12px 10px 40px}
+ header{grid-template-columns:1fr}
+ header h1{padding:18px 16px 12px}
+ .facts{border-left:0;border-top:var(--bd) solid var(--ink);grid-template-rows:none;grid-template-columns:1fr 1fr;min-width:0}
+ .facts li:first-child{padding:12px 6px;flex-direction:column;gap:6px}
+ .facts li:first-child b{font-size:14px;padding:6px 8px}
+ .facts li:last-child{border-top:0;border-left:var(--bd) solid var(--ink);display:flex;align-items:center;justify-content:center;flex-direction:column}
+ .lead{padding:10px 16px}
+ .sh{gap:12px}
+ .sh .n{width:54px;height:54px;font-size:22px}
+ .in{padding:16px 12px 22px}
+ thead{display:none}
+ table,tbody{display:block;border:0}
+ tr{display:block;border:var(--bd) solid var(--ink);padding:10px 12px;margin-bottom:10px}
+ td{display:grid;grid-template-columns:5.2em 1fr;gap:10px;align-items:baseline;border:0;padding:3px 0}
+ td::before{content:attr(data-l);font-size:12px;font-weight:700}
+ td.main{display:block;padding:0 0 6px;border-bottom:1.5px solid var(--ink);margin-bottom:4px}
+ td.main::before{content:none}
+ td.num{text-align:left}
+ .rw>summary,.rw.pend{flex-wrap:wrap;padding:12px}
+ .rw>summary::after{margin-left:calc(34px + 14px)}
+ .dm{margin-left:calc(34px + 14px);flex:0 0 calc(100% - 48px)}
+ .rwbody{padding:16px 12px 20px}
+ .card,.opt{padding:12px}
+ .tile{padding:8px 10px 10px}
+ footer{padding:16px}
+}
+
+</style></head><body>
+<div class="wrap">
+<header>
+<h1>めしあぴ便利帳</h1>
+<ul class="facts"><li>日付 <b>2026年10月12日</b></li><li>差出人 <b>ユウキ</b></li></ul>
+<p class="lead">運用型広告研究所の鮮度チェックと、AIでできること10案</p>
+</header>
+
+<section id="fresh">
+<div class="sh"><span class="n">01</span><h2>鮮度チェック</h2></div>
+<div class="in">
+<div class="tiles">
+<div class="tile"><span class="l">記事</span><span class="v">30<small>本</small></span></div>
+<div class="tile hot"><span class="l">旧用語を含む記事</span><span class="v">25<small>本</small></span></div>
+<div class="tile hot"><span class="l">旧用語</span><span class="v">211<small>箇所</small></span></div>
+<div class="tile"><span class="l">最終更新</span><span class="v">2021<small>年4月</small></span></div>
+</div>
+
+<h3 class="sub">旧用語の一覧</h3>
+<p class="note">ブログ内で使われている古い呼び方と、いまの公式名称です。</p>
+<table><thead><tr><th>旧用語</th><th>現行</th><th>メモ</th><th class="num">件数</th><th>根拠</th></tr></thead><tbody>
+<tr><td class="main"><b class="old">AdWords</b></td><td data-l="現行" class="new">Google 広告</td><td data-l="メモ">2018年7月に「Google AdWords」から「Google 広告」へ改名</td><td data-l="件数" class="num">78</td><td data-l="根拠"><a href="https://blog.google/technology/ads/new-advertising-brands/" target="_blank" rel="noopener">blog.google</a></td></tr><tr><td class="main"><b class="old">広告表示オプション</b></td><td data-l="現行" class="new">アセット</td><td data-l="メモ">2022年に「広告表示オプション」は「アセット」へ名称変更</td><td data-l="件数" class="num">60</td><td data-l="根拠"><a href="https://support.google.com/google-ads/answer/7331111?hl=ja" target="_blank" rel="noopener">support.google.com</a></td></tr><tr><td class="main"><b class="old">スマートディスプレイキャンペーン</b></td><td data-l="現行" class="new">P-MAX（パフォーマンス最大化）キャンペーン</td><td data-l="メモ">スマートディスプレイキャンペーンは2022年にP-MAXへ移行</td><td data-l="件数" class="num">8</td><td data-l="根拠"><a href="https://support.google.com/google-ads/answer/10724817?hl=ja" target="_blank" rel="noopener">support.google.com</a></td></tr><tr><td class="main"><b class="old">拡張テキスト広告</b></td><td data-l="現行" class="new">レスポンシブ検索広告</td><td data-l="メモ">2022年6月30日以降、拡張テキスト広告は新規作成・編集不可</td><td data-l="件数" class="num">2</td><td data-l="根拠"><a href="https://support.google.com/google-ads/answer/1704389?hl=ja" target="_blank" rel="noopener">support.google.com</a></td></tr><tr><td class="main"><b class="old">YDN</b></td><td data-l="現行" class="new">Yahoo!広告 ディスプレイ広告（運用型）(YDA)</td><td data-l="メモ">2020年にYDNからYDAへ移行</td><td data-l="件数" class="num">9</td><td data-l="根拠"><a href="https://www.lycbiz.com/jp/news/yahoo-ads/20210623" target="_blank" rel="noopener">www.lycbiz.com</a></td></tr><tr><td class="main"><b class="old">Yahoo!プロモーション広告 / スポンサードサーチ</b></td><td data-l="現行" class="new">Yahoo!広告 検索広告</td><td data-l="メモ">2020年にブランド統合</td><td data-l="件数" class="num">5</td><td data-l="根拠"><a href="https://www.lycbiz.com/jp/news/yahoo-ads/20200827-02" target="_blank" rel="noopener">www.lycbiz.com</a></td></tr><tr><td class="main"><b class="old">Google アナリティクス（UA）</b></td><td data-l="現行" class="new">Google アナリティクス 4 (GA4)</td><td data-l="メモ">ユニバーサル アナリティクスは2023年7月に計測停止</td><td data-l="件数" class="num">2</td><td data-l="根拠"><a href="https://support.google.com/analytics/answer/11583528?hl=ja" target="_blank" rel="noopener">support.google.com</a></td></tr><tr><td class="main"><b class="old">SimilarWeb</b></td><td data-l="現行" class="new">Similarweb</td><td data-l="メモ">2021年前後から公式表記は小文字のw</td><td data-l="件数" class="num">38</td><td data-l="根拠"><a href="https://www.similarweb.com/ja/" target="_blank" rel="noopener">www.similarweb.com</a></td></tr><tr><td class="main"><b class="old">PLA（商品リスト広告）</b></td><td data-l="現行" class="new">ショッピング広告</td><td data-l="メモ">商品リスト広告(PLA)は「ショッピング広告」に呼称統一</td><td data-l="件数" class="num">5</td><td data-l="根拠"><a href="https://support.google.com/google-ads/answer/2454022?hl=ja" target="_blank" rel="noopener">support.google.com</a></td></tr><tr><td class="main"><b class="old">GDR（動的リマーケティング）</b></td><td data-l="現行" class="new">動的リマーケティング（P-MAX/デマンドジェネレーション内）</td><td data-l="メモ">ディスプレイ単体の動的リマーケはP-MAX等へ移行</td><td data-l="件数" class="num">4</td><td data-l="根拠"><a href="https://support.google.com/google-ads/answer/10724817?hl=ja" target="_blank" rel="noopener">support.google.com</a></td></tr>
+</tbody></table>
+
+<h3 class="sub">記事30本の一覧</h3>
+<p class="note">旧用語が多い順です。タイトルから元の記事を開けます。</p>
+<table><thead><tr><th>タイトル</th><th>日付</th><th class="num">文字数</th><th>旧用語の内訳</th><th class="num">件数</th></tr></thead><tbody>
+<tr><td class="main"><a href="https://listing.gaprise.com/blog/ads-introduction3/" target="_blank" rel="noopener">【上級】AdWords広告概論Vol.3 広告表示オプション</a></td><td data-l="日付">2017.07.12</td><td data-l="文字数" class="num">2,737</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>10</b></span><span class="chip">広告表示オプション <b>24</b></span></div></td><td data-l="件数" class="num">34</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/3c-analysis/" target="_blank" rel="noopener">【SimilarWeb】×【リスティング広告】×【GoogleAnalytics】３C分析による運用改善ストーリー</a></td><td data-l="日付">2017.10.31</td><td data-l="文字数" class="num">3,202</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>4</b></span><span class="chip">Google アナリティクス（UA） <b>1</b></span><span class="chip">SimilarWeb <b>11</b></span></div></td><td data-l="件数" class="num">16</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/ads-introduction2/" target="_blank" rel="noopener">【上級】AdWords広告概論Vol.2 キレイな広告の作り方</a></td><td data-l="日付">2017.07.12</td><td data-l="文字数" class="num">2,186</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>9</b></span><span class="chip">広告表示オプション <b>6</b></span></div></td><td data-l="件数" class="num">15</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/ads-introduction1/" target="_blank" rel="noopener">【上級】AdWords広告概論Vol.1 商品パッケージ化が進む広告の未来</a></td><td data-l="日付">2017.07.12</td><td data-l="文字数" class="num">1,466</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>6</b></span><span class="chip">広告表示オプション <b>7</b></span></div></td><td data-l="件数" class="num">13</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/series-concept/" target="_blank" rel="noopener">「書籍では教えてくれない運用型広告」シリーズについて</a></td><td data-l="日付">2019.06.24</td><td data-l="文字数" class="num">1,694</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>8</b></span><span class="chip">広告表示オプション <b>1</b></span><span class="chip">スマートディスプレイキャンペーン <b>1</b></span><span class="chip">PLA（商品リスト広告） <b>1</b></span><span class="chip">GDR（動的リマーケティング） <b>1</b></span></div></td><td data-l="件数" class="num">12</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/ec-product/" target="_blank" rel="noopener">【初級】ECサイトが今スグ導入検討すべき３つの広告配信機能【DSA,PLA,GDR】</a></td><td data-l="日付">2017.12.06</td><td data-l="文字数" class="num">2,477</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>5</b></span><span class="chip">PLA（商品リスト広告） <b>4</b></span><span class="chip">GDR（動的リマーケティング） <b>3</b></span></div></td><td data-l="件数" class="num">12</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/Traffic-source/" target="_blank" rel="noopener">【上級】時流を捉えるSimilarWeb活用事例</a></td><td data-l="日付">2018.09.30</td><td data-l="文字数" class="num">1,838</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">Yahoo!プロモーション広告 / スポンサードサーチ <b>1</b></span><span class="chip">SimilarWeb <b>10</b></span></div></td><td data-l="件数" class="num">11</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/channelanalysis" target="_blank" rel="noopener">【上級】運用の限界を突破するSimilarWeb活用事例</a></td><td data-l="日付">2017.07.11</td><td data-l="文字数" class="num">2,593</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">SimilarWeb <b>10</b></span></div></td><td data-l="件数" class="num">10</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/conflict" target="_blank" rel="noopener">【初級】SimilarWeb×広告運用　成果に繋げる広告配信手法まとめ</a></td><td data-l="日付">2017.07.11</td><td data-l="文字数" class="num">1,841</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>1</b></span><span class="chip">YDN <b>2</b></span><span class="chip">SimilarWeb <b>7</b></span></div></td><td data-l="件数" class="num">10</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/promotion-display-option/" target="_blank" rel="noopener">【最新】超簡単！プロモーション表示オプションの設定方法</a></td><td data-l="日付">2017.10.31</td><td data-l="文字数" class="num">2,446</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>2</b></span><span class="chip">広告表示オプション <b>7</b></span></div></td><td data-l="件数" class="num">9</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/ads-introduction0/" target="_blank" rel="noopener">【上級】AdWords広告概論Vol.0 はじめに</a></td><td data-l="日付">2017.07.12</td><td data-l="文字数" class="num">721</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>6</b></span><span class="chip">広告表示オプション <b>1</b></span><span class="chip">拡張テキスト広告 <b>1</b></span></div></td><td data-l="件数" class="num">8</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/price-display-option/" target="_blank" rel="noopener">【最新】超簡単！価格表示オプションの設定方法</a></td><td data-l="日付">2017.07.07</td><td data-l="文字数" class="num">1,105</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>1</b></span><span class="chip">広告表示オプション <b>6</b></span><span class="chip">拡張テキスト広告 <b>1</b></span></div></td><td data-l="件数" class="num">8</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/clear-advertisement3/" target="_blank" rel="noopener">【初級】世界一分かりやすい運用型広告の世界Vol.3 広告媒体</a></td><td data-l="日付">2018.01.31</td><td data-l="文字数" class="num">5,690</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>3</b></span><span class="chip">YDN <b>3</b></span><span class="chip">Yahoo!プロモーション広告 / スポンサードサーチ <b>1</b></span></div></td><td data-l="件数" class="num">7</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/ads-introduction4/" target="_blank" rel="noopener">【上級】AdWords広告概論Vol.4 広告文</a></td><td data-l="日付">2017.07.14</td><td data-l="文字数" class="num">1,954</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>5</b></span><span class="chip">広告表示オプション <b>2</b></span></div></td><td data-l="件数" class="num">7</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/smart-display" target="_blank" rel="noopener">【最新】超簡単！スマートディスプレイキャンペーンの設定方法</a></td><td data-l="日付">2017.07.11</td><td data-l="文字数" class="num">1,373</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>1</b></span><span class="chip">スマートディスプレイキャンペーン <b>6</b></span></div></td><td data-l="件数" class="num">7</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/nominated-keywords/" target="_blank" rel="noopener">【上級】指名キーワードを配信すべき4つのメリットと2つの活用術</a></td><td data-l="日付">2017.07.01</td><td data-l="文字数" class="num">4,396</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>3</b></span><span class="chip">広告表示オプション <b>4</b></span></div></td><td data-l="件数" class="num">7</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/clear-advertisement4/" target="_blank" rel="noopener">【初級】世界一分かりやすい運用型広告の世界Vol.4 広告形式</a></td><td data-l="日付">2018.01.31</td><td data-l="文字数" class="num">2,724</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>2</b></span><span class="chip">広告表示オプション <b>2</b></span><span class="chip">YDN <b>2</b></span></div></td><td data-l="件数" class="num">6</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/remarketing10" target="_blank" rel="noopener">【中級】費用対効果を最大化するリマーケティング10の手法</a></td><td data-l="日付">2017.07.11</td><td data-l="文字数" class="num">2,474</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>5</b></span><span class="chip">Google アナリティクス（UA） <b>1</b></span></div></td><td data-l="件数" class="num">6</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/search-advertising/" target="_blank" rel="noopener">【基本】意外と知らない。Google／Yahoo!検索広告の５つの違い</a></td><td data-l="日付">2017.07.03</td><td data-l="文字数" class="num">2,059</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>1</b></span><span class="chip">Yahoo!プロモーション広告 / スポンサードサーチ <b>2</b></span></div></td><td data-l="件数" class="num">3</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/content-target/" target="_blank" rel="noopener">【上級】驚くほどCPAが改善する！GoogleAdWordsのコンテンツターゲットと応用術</a></td><td data-l="日付">2017.07.02</td><td data-l="文字数" class="num">1,739</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>2</b></span><span class="chip">Yahoo!プロモーション広告 / スポンサードサーチ <b>1</b></span></div></td><td data-l="件数" class="num">3</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/clear-advertisement2/" target="_blank" rel="noopener">【初級】世界一分かりやすい運用型広告の世界Vol.2 広告ターゲティング</a></td><td data-l="日付">2018.01.31</td><td data-l="文字数" class="num">1,962</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>1</b></span><span class="chip">YDN <b>1</b></span></div></td><td data-l="件数" class="num">2</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/abtest-shortening/" target="_blank" rel="noopener">【初級】A/Bテストの時間短縮！GoogleAdWordsのラベル機能活用術</a></td><td data-l="日付">2017.07.04</td><td data-l="文字数" class="num">1,247</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>2</b></span></div></td><td data-l="件数" class="num">2</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/banner-size/" target="_blank" rel="noopener">【保存版】広告バナーサイズ一覧表【ディスプレイ広告／SNS広告】</a></td><td data-l="日付">2021.04.27</td><td data-l="文字数" class="num">1,337</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">YDN <b>1</b></span></div></td><td data-l="件数" class="num">1</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/smart-display2" target="_blank" rel="noopener">【中級】スマートディスプレイキャンペーンの成果を加速させる2つのアプローチ</a></td><td data-l="日付">2018.01.29</td><td data-l="文字数" class="num">2,230</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">スマートディスプレイキャンペーン <b>1</b></span></div></td><td data-l="件数" class="num">1</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/data-aggregation/" target="_blank" rel="noopener">【中級】誰でも簡単にCPAを下げられる！セグメント別データ集計術</a></td><td data-l="日付">2017.07.05</td><td data-l="文字数" class="num">1,583</td><td data-l="旧用語の内訳"><div class="chips"><span class="chip">AdWords <b>1</b></span></div></td><td data-l="件数" class="num">1</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/Full-channel-marketing" target="_blank" rel="noopener">【上級】広告運用者がコンバージョンを10倍に導いた！フルチャネルマーケティング思考術</a></td><td data-l="日付">2019.05.31</td><td data-l="文字数" class="num">2,390</td><td data-l="旧用語の内訳"><div class="chips"><span class="none">なし</span></div></td><td data-l="件数" class="num">0</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/clear-advertisement1/" target="_blank" rel="noopener">【初級】世界一分かりやすい運用型広告の世界vol.1 運用型広告の本質</a></td><td data-l="日付">2018.01.31</td><td data-l="文字数" class="num">1,402</td><td data-l="旧用語の内訳"><div class="chips"><span class="none">なし</span></div></td><td data-l="件数" class="num">0</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/clear-advertisement0/" target="_blank" rel="noopener">【初級】世界一分かりやすい運用型広告の世界Vol.0 はじめに</a></td><td data-l="日付">2018.01.31</td><td data-l="文字数" class="num">767</td><td data-l="旧用語の内訳"><div class="chips"><span class="none">なし</span></div></td><td data-l="件数" class="num">0</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/bid-strategy/" target="_blank" rel="noopener">【中級】AdWords入札戦略とスマート自動入札の特徴導入時のポイント、AI化が進む広告運用の未来</a></td><td data-l="日付">2017.07.11</td><td data-l="文字数" class="num">2,210</td><td data-l="旧用語の内訳"><div class="chips"><span class="none">なし</span></div></td><td data-l="件数" class="num">0</td></tr><tr><td class="main"><a href="https://listing.gaprise.com/blog/search-queries/" target="_blank" rel="noopener">【中級】提案力が上がる検索語句の新活用術</a></td><td data-l="日付">2017.07.06</td><td data-l="文字数" class="num">2,504</td><td data-l="旧用語の内訳"><div class="chips"><span class="none">なし</span></div></td><td data-l="件数" class="num">0</td></tr>
+</tbody></table>
+
+<h3 class="sub">書き直し案 上位3本</h3>
+<p class="note">旧用語が特に多かった3本です。</p>
+<div class="rws">
+<details class="rw"><summary><span class="dn">1</span><span class="ds"><b>【上級】AdWords広告概論Vol.3 広告表示オプション</b><span class="dl">「AdWords」を「Google 広告」に統一しました(シリーズ名、記事一覧、関連記事タイトル、引用元表記を含む)。</span><span class="dl">「広告表示オプション」を「アセット」に変更し、個別名も「サイトリンク アセット」「コールアウト アセット」などに変えました。</span></span><span class="dm">旧用語 34箇所</span></summary><div class="rwbody"><h4>変更点サマリー</h4>
+<ul>
+<li>「AdWords」を「Google 広告」に統一しました(シリーズ名、記事一覧、関連記事タイトル、引用元表記を含む)。</li>
+<li>「広告表示オプション」を「アセット」に変更し、個別名も「サイトリンク アセット」「コールアウト アセット」などに変えました。</li>
+<li>ローテーションの説明を、拡張テキスト広告前提からレスポンシブ検索広告前提に書き換えました。現在はアセットも自動で組み合わせが選ばれるため、「最適化に弱い」の根拠を「検証対象としての優先度の違い」に変えました。</li>
+<li>「2017年5月現在」の表記を「2026年10月現在」に更新しました。表の数値は検証できないため【要再確認】を付けています。</li>
+<li>サイトリンクでのSNSページ設定の記述を、リンク先URLとして指定する形に置き換えました【要再確認】。</li>
+<li>住所表示オプションを、Google ビジネス プロフィール連携を前提とする「住所アセット」の説明に置き換えました【要再確認】。</li>
+<li>「約2倍」「品質スコア」などの数値や効果の記述は、確信が持てないため【要再確認】を付けました。</li>
+<li>YDN、P-MAX、GA4などの置換対象は本記事に登場しないため、適用していません。</li>
+</ul>
+<h4>【上級】Google 広告概論Vol.3 アセット</h4>
+<p>連載記事「書籍では教えてくれない運用型広告」</p>
+<p>【広告概論　記事一覧】</p>
+<p>■Google 広告概論Vol.0 はじめに</p>
+<p>シリーズ記事の全体像を説明しています。</p>
+<p>■Google 広告概論Vol.1 商品パッケージ化が進む広告の未来</p>
+<p>商品パッケージ化が進む広告の未来とは何か？</p>
+<p>■Google 広告概論Vol.2 キレイな広告の作り方</p>
+<p>広告文字数が増加する今注意すべき点とは</p>
+<p>■Google 広告概論Vol.3 アセット</p>
+<p>商品パッケージ（裏）としての役割とは</p>
+<p>■Google 広告概論Vol.4 広告文</p>
+<p>商品パッケージ（表）としての役割とは</p>
+<h4>アセット＝事実情報の羅列</h4>
+<p>広告概論Ⅰにて以下のように商品パッケージに例えた説明を行いました。</p>
+<p>・商品パッケージ表（キャッチコピー）</p>
+<p>＝広告文　　魅力的なキャッチコピー</p>
+<p>・商品パッケージ裏（栄養成分の表示）</p>
+<p>＝アセット　事実情報の羅列</p>
+<p>■Google 広告概論Vol.1 商品パッケージ化が進む広告の未来</p>
+<p>具体的になぜアセットが事実情報の羅列に向いているのか？</p>
+<p>理由として広告ローテーションの仕様を明らかにします。</p>
+<p>その後、アセットのメリットや、設定すべきアセットをまとめます。</p>
+<p>画像：グレー枠の箇所がアセット</p>
+<p>こちらの記事もあわせて読むことで理解が深まります。</p>
+<p>関連記事：</p>
+<p>Google 広告概論Vol.1 商品パッケージ化が進む広告の未来</p>
+<h4>アセットは最適化に弱い</h4>
+<p>現在の広告文はレスポンシブ検索広告が中心で、複数の見出しと説明文の組み合わせからクリック率やコンバージョンの見込みが高いパターンが優先的に表示されるよう最適化が進みます。</p>
+<p>そのため、次々と新しい見出しや説明文のパターンを追加して比較検証を行う領域です。</p>
+<p>一方でアセットは、組み合わせの自動選択はあるものの、広告文のようにパターンを入れ替えて検証する対象にはなりにくい領域です【要再確認】。</p>
+<p>そのため事実情報を端的に単語として羅列する方が適任です。</p>
+<p>広告文とアセットのローテーション仕様をまとめてみました。</p>
+<p>クリック率は弊社実績とGoogle 広告の発表を元に記載しています【要再確認】。</p>
+<h4>広告文とアセットのローテーション仕様</h4>
+<p>※2026年10月現在の仕様となります。表の内容は現行の画面で再確認が必要です【要再確認】。</p>
+<h4>事実情報を羅列した例</h4>
+<p>アセット（赤枠）に注目して見るとどちらが見やすいでしょうか？</p>
+<p>画像：アセット　左は事実情報の羅列、右は文章的に記述した見え方の比較</p>
+<p>右はスマホでの見え方を意識していないため</p>
+<p>メリハリがなく読む側に負担を強いる印象を受けます。</p>
+<h4>アセット ３つのメリット</h4>
+<p>より多くの情報を訴求できる</p>
+<p>広告の専有面積が広がりクリック率が上昇する</p>
+<p>広告の見込みクリック率の評価が高まり、品質スコアが高まりやすい【要再確認】</p>
+<p>アセットが複数同時表示された場合は、</p>
+<p>未設定時と比べて約2倍も大きく広告面積が広がります【要再確認】。</p>
+<p>クリック率や品質スコアを意識する場合は、</p>
+<p>基本的にアセットを積極的に活用すべきでしょう。</p>
+<h4>アセット ３つのデメリット</h4>
+<p>様々な要因で表示されないことがある</p>
+<p>文字数が増えすぎて可読性が悪い場合もある</p>
+<p>実際に表示される組み合わせをコントロールできない</p>
+<p>これらのデメリットは、実際に広告表示を目視で確認することである程度は回避できます。</p>
+<p>きちんと実際の広告表示を、広告プレビューと実機にてチェックしましょう。</p>
+<p>デメリットをカバーするための「キレイな広告」の作り方は下記を記事参照</p>
+<p>関連記事：</p>
+<p>Google 広告概論Vol.2 キレイな広告の作り方</p>
+<h4>設定必須！４つのアセット</h4>
+<p>全ての広告主様で検討すべき代表的な４つのアセットをご紹介します。</p>
+<p>導入のしやすさから、特にコールアウト アセットの設定は必須となります。</p>
+<h4>1.サイトリンク アセット</h4>
+<p>サイト内の別のページへのリンクを広告文の下に表示する機能です。</p>
+<p>広告を見たユーザーが探しているページをすぐに開く事ができます。</p>
+<p>（公式のSNSページやYouTubeチャンネルへ誘導したい場合は、サイトリンクのリンク先URLとして指定します【要再確認】）</p>
+<p>サイトリンク アセット例</p>
+<p>引用：Google 広告ヘルプ「サイトリンク アセットについて」【要再確認】</p>
+<h4>2.構造化スニペット アセット</h4>
+<p>商品やサービスの特定の側面を強調できる機能です。</p>
+<p>予め定められたヘッダー種類の中から選択して設定する必要があります。</p>
+<p>該当するヘッダーが一つもない場合は設定が難しく、やや入稿制限が厳しいです。</p>
+<p>構造化スニペット アセット</p>
+<p>引用：Google 広告ヘルプ「構造化スニペット アセットについて」【要再確認】</p>
+<h4>3.コールアウト アセット</h4>
+<p>広告主のビジネスや商品、サービスに関する詳しい情報などを表示する機能です。</p>
+<p>他のアセットと比べて制限が少なく、比較的自由にテキストが記述可能です。</p>
+<p>コールアウト アセット</p>
+<p>引用：Google 広告ヘルプ「コールアウト アセットについて」【要再確認】</p>
+<h4>4.価格アセット</h4>
+<p>商品やサービス名と価格をセットにしたカード形式で表示する機能です。</p>
+<p>商品と対応したページに直接誘導することでコンバージョンまでの経路を短縮できます。</p>
+<p>サイトリンクと性質は近いですが、表示形式とテキスト量がより拡張されています。</p>
+<p>価格アセット</p>
+<p>こちらの記事で設定方法を詳しく紹介しています。</p>
+<p>【最新】超簡単！価格アセットの設定方法【要再確認】</p>
+<h4>使い分ける２つのアセット</h4>
+<p>上記４つのように設定必須とまでは言わなくても、広告主のサービスや目的によっては導入検討すべきものを２つご紹介します。</p>
+<h4>5.住所アセット</h4>
+<p>会社や店舗の住所、地図を表示できる機能です。Google ビジネス プロフィールとの連携を前提とした設定が基本です【要再確認】。</p>
+<p>電話番号アセットと同様に電話番号を表示することも可能です【要再確認】。</p>
+<p>広告から実店舗に誘導することが目的の場合は設定を検討すべきでしょう。</p>
+<p>住所アセット</p>
+<p>引用：Google 広告ヘルプ「住所アセットについて」【要再確認】</p>
+<h4>6.電話番号アセット</h4>
+<p>PCでは電話番号のみ表示、モバイル端末の場合は通話ボタンが表示され、タップすることで直接電話をかけることができます【要再確認】。</p>
+<p>着地ページを見る必要が必ずしもないサービス、電話問い合わせが目的の場合は設定を検討すべきです。</p>
+<p>電話番号アセット</p>
+<p>引用：Google 広告ヘルプ「電話番号アセットについて」【要再確認】</p>
+<h4>終わりに</h4>
+<p>アセットのメリット・デメリット</p>
+<p>代表的なアセットをご紹介してきました。</p>
+<p>向き不向きがあるため広告主の目的に沿って取捨選択することが大切です。</p>
+<p>アセットの性質をしっかりと理解しながら、広告主のサービス／目的と照らし合わせて適切な設定を心がけましょう。</p>
+<h4>迷った点</h4>
+<ul>
+<li>見出し「アセットは最適化に弱い」は、現行仕様では前提が成り立ちにくい主張です。見出しは維持しつつ、本文を「検証対象になりにくい」に弱めて【要再確認】を付けました。見出し自体を変えるかは要判断です。</li>
+<li>ローテーション表は画像で、元の数値が不明です。表の再作成は手元の管理画面データか公式ヘルプで確認してください。</li>
+<li>原文に「〜は意外と多いように感じています」型の書き出しはなかったため、追加していません。入れるなら「アセットを何となく設定している運用者は意外と多いように感じています。」を冒頭に置く案があります。</li>
+<li>SNSページ設定の記述は、廃止された機能の代替としてリンク先URL指定に置き換えました。これで十分かは未確認です。</li>
+<li>引用元の「Google 広告ヘルプ」というページ名は推測です。実際のタイトルとURLの差し替えが必要です。</li>
+</ul><details class="orig"><summary>原文を見る</summary><p>連載記事「書籍では教えてくれない運用型広告</p><p>」</p><p>【広告概論　記事一覧】</p><p>■AdWords広告概論Vol.0 はじめに</p><p>シリーズ記事の全体像を説明しています。</p><p>■AdWords広告概論Vol.1 商品パッケージ化が進む広告の未来</p><p>商品パッケージ化が進む広告の未来とは何か？</p><p>■AdWords広告概論Vol.2 キレイな広告の作り方</p><p>広告文字数が増加する今注意すべき点とは</p><p>■AdWords広告概論Vol.3 広告表示オプション</p><p>商品パッケージ（裏）としての役割とは</p><p>■AdWords広告概論Vol.4 広告文</p><p>商品パッケージ（表）としての役割とは</p><p>広告表示オプション＝事実情報の羅列</p><p>広告概論Ⅰにて以下のように商品パッケージに例えた説明を行いました。</p><p>・商品パッケージ表（キャッチコピー）</p><p>＝広告文　　魅力的なキャッチコピー</p><p>・商品パッケージ裏（栄養成分の表示）</p><p>＝広告表示オプション　事実情報の羅列</p><p>■AdWords広告概論Vol.1  商品パッケージ化が進む広告の未来</p><p>具体的になぜ広告表示オプションが事実情報の羅列に向いているのか？</p><p>理由として広告ローテーションの仕様を明らかにします。</p><p>その後、広告表示オプションのメリットや、設定すべき広告表示オプションをまとめます。</p><p>画像：グレー枠の箇所が広告表示オプション</p><p>こちらの記事もあわせて読むことで理解が深まります。</p><p>関連記事： AdWords広告概論Vol.1 商品パッケージ化が進む広告の未来</p><p>広告表示オプションは最適化に弱い</p><p>広告文とサイトリンクはクリック率が高いパターンが優先的に表示されるよう最適化が進みます。</p><p>そのため、次々と新しい広告文のパターンを追加して比較検証を行う領域です。</p><p>一方で大半の広告表示オプションは最適化の方向であまりローテーションされません。</p><p>そのため事実情報を端的に単語として羅列する方が適任です。</p><p>広告文と広告表示オプションのローテーション仕様をまとめてみました。</p><p>クリック率は弊社実績とGoogleAdWordsの発表を元に記載しています。</p><p>広告文と広告表示オプションのローテーション仕様</p><p>※2017年5月現在の仕様となります。</p><p>事実情報を羅列した例</p><p>広告表示オプション（赤枠）に注目して見るとどちらが見やすいでしょうか？</p><p>画像：広告表示オプション　左は事実情報の羅列、右は文章的に記述した見え方の比較</p><p>右はスマホでの見え方を意識していないため</p><p>メリハリがなく読む側に負担を強いる印象を受けます。</p><p>広告表示オプション ３つのメリット</p><p>より多くの情報を訴求できる</p><p>広告の専有面積が広がりクリック率が上昇する</p><p>品質スコアが高まりやすい</p><p>広告表示オプションが複数同時表示された場合は、</p><p>未設定時と比べて約2倍も大きく広告面積が広がります。</p><p>クリック率や品質スコアを意識する場合は、</p><p>基本的に広告表示オプションを積極的に活用すべきでしょう。</p><p>広告表示オプション ３つのデメリット</p><p>様々な要因で表示されないことがある</p><p>文字数が増えすぎて可読性が悪い場合もある</p><p>実際に表示される組み合わせをコントロールできない</p><p>これらのデメリットは、実際に広告表示を目視で確認することである程度は回避できます。</p><p>きちんと実際の広告表示を実機にてチェックしましょう。</p><p>デメリットをカバーするための「キレイな広告」の作り方は下記を記事参照</p><p>関連記事： AdWords広告作成概論Vol.2 キレイな広告の作り方</p><p>設定必須！４つの広告表示オプション</p><p>全ての広告主様で検討すべき代表的な４つの広告表示オプションをご紹介します。</p><p>導入のしやすさから、特にコールアウト表示オプションの設定は必須となります。</p><p>1.サイトリンク表示オプション</p><p>サイト内の別のページへのリンクを広告文の下に表示する機能です。</p><p>広告を見たユーザーが探しているページをすぐに開く事ができます。</p><p>（広告主が所有する公式のFacebookページ、Twitterページ、Youtubeチャンネルも設定可能）</p><p>サイトリンク表示オプション例</p><p>引用： 広告文の下に追加のリンク（サイトリンク）を表示する</p><p>2.構造化スニペット表示オプション</p><p>商品やサービスの特定の側面を強調できる機能です。</p><p>予め定められたヘッダー種類の中から選択して設定する必要があります。</p><p>該当するヘッダーが一つもない場合は設定が難しく、やや入稿制限が厳しいです。</p><p>構造化スニペット表示オプション</p><p>引用： 構造化スニペット表示オプションについて</p><p>3.コールアウト表示オプション</p><p>広告主のビジネスや商品、サービスに関する詳しい情報などを表示する機能です。</p><p>他の広告表示オプションと比べて制限が少なく、比較的自由にテキストが記述可能です。</p><p>コールアウト表示オプション</p><p>引用： AdWordsコールアウト表示オプションについて</p><p>4.価格表示オプション</p><p>商品やサービス名と価格をセットにしたカード形式で表示する機能です。</p><p>商品と対応したページに直接誘導することでコンバージョンまでの経路を短縮できます。</p><p>サイトリンクと性質は近いですが、表示形式とテキスト量がより拡張されています。</p><p>価格表示オプション</p><p>こちらの記事で設定方法を詳しく紹介しています。</p><p>【最新】超簡単！価格表示オプションの設定方法</p><p>使い分ける２つの広告表示オプション</p><p>上記４つのように設定必須とまでは言わなくても、広告主のサービスや目的によっては導入検討すべきものを２つご紹介します。</p><p>5.住所表示オプション</p><p>会社や店舗の住所、地図を表示できる機能です。</p><p>電話番号表示オプションと同様に電話番号を追加することも可能です。</p><p>広告から実店舗に誘導することが目的の場合は設定を検討すべきでしょう。</p><p>住所表示オプション</p><p>引用： 住所表示オプションについて</p><p>6.電話番号表示オプション</p><p>PCでは電話番号のみ表示、モバイル端末の場合は通話ボタンが表示され、タップすることで直接電話をかけることができます。</p><p>着地ページを見る必要が必ずしもないサービス、電話問い合わせが目的の場合は設定を検討すべきです。</p><p>電話番号表示オプション</p><p>引用：電話番号表示オプションについて</p><p>終わりに</p><p>広告表示オプションのメリット・デメリット</p><p>代表的な広告表示オプションをご紹介してきました。</p><p>向き不向きがあるため広告主の目的に沿って取捨選択することが大切です。</p><p>広告表示オプションの性質をしっかりと理解しながら、広告主のサービス／目的と照らし合わせて適切な設定を心がけましょう。</p></details></div></details>
+<details class="rw"><summary><span class="dn">2</span><span class="ds"><b>【SimilarWeb】×【リスティング広告】×【GoogleAnalytics】３C分析による運用改善ストーリー</b><span class="dl">SimilarWeb を Similarweb に統一し、タイトルとリード文の「Google Analytics」を GA4 に変更しました。</span><span class="dl">Google AdWords を Google 広告に置換し、画面の説明を現行の「オーディエンス」内の「ユーザー属性」に変更しました。</span></span><span class="dm">旧用語 16箇所</span></summary><div class="rwbody"><h4>変更点サマリー</h4>
+<ul>
+<li>SimilarWeb を Similarweb に統一し、タイトルとリード文の「Google Analytics」を GA4 に変更しました。</li>
+<li>Google AdWords を Google 広告に置換し、画面の説明を現行の「オーディエンス」内の「ユーザー属性」に変更しました。</li>
+<li>拡張テキスト広告を前提にした広告文施策を、レスポンシブ検索広告の見出しに年齢訴求を入れる施策に変更しました。</li>
+<li>年齢別入札調整は、自動入札では調整が効きにくい点を補足しました。</li>
+<li>GA4 の画面名、指標（平均エンゲージメント時間、トラフィック獲得、経路データ探索）に置き換えました。</li>
+<li>「最近アップデートされた」という時点依存の記述を、現行機能の説明に変更しました。</li>
+<li>原文の「4本の施策」と「3つの施策」の不一致を「4つ」に統一しました。</li>
+<li>広告表示オプション、スマートディスプレイキャンペーン、YDN、Yahoo!スポンサードサーチ、PLA は原文に登場しないため置換していません。</li>
+</ul>
+<p>---</p>
+<h4>【Similarweb】×【リスティング広告】×【GA4】３C分析による運用改善ストーリー</h4>
+<h4>■はじめに</h4>
+<p>３C分析というフレームワークをご存じの方は多いだろうと思います。</p>
+<p>リスティング広告の現場では３C分析をどう活用しているのか、具体的な参考事例を知りたい。</p>
+<p>というお声を頂いたので、この記事ではストーリー仕立ての構成で、【Similarweb】×【リスティング広告】×【GA4】を活用した広告運用における３C分析をご紹介します。</p>
+<p>※広告運用者視点に立った狭義の３C分析の例になります。Similarweb の有料版を前提とした記事になります【要再確認】。</p>
+<h4>■化粧品会社A社の場合</h4>
+<p>女性向け化粧品の通販サイトA社がリスティング広告を始めて3年半が経過、</p>
+<p>幸いなことに最近まで競合が少ないお陰で、検索広告を中心に満足な成果を上げていた。</p>
+<p>しかし、3ヶ月前に突如現れた競合B社がリスティング広告に本格参入した影響で、コンバージョン数が顕著に減少してしまった。</p>
+<p>A社のリスティング広告担当者は打開策を打ち出せずにいた。</p>
+<p>とりあえず非常によく知られたマーケティングの３C分析を用いて現状を分析することにした。</p>
+<h4>■３C分析編</h4>
+<h4>ステップ１.競合／自社分析　サイトの滞在時間を比較してみた</h4>
+<p>リスティング広告の競合広告文やキーワードをチェックしても、数値で比較することは困難だ。</p>
+<p>そこで Similarweb で、自社と競合サイトの滞在時間（Similarweb 上では「平均訪問時間」）の比較データを見てみることにした【要再確認】。</p>
+<p>※Similarweb では有料広告に絞り込んだ滞在時間の比較も可能です【要再確認】。</p>
+<p>Similarweb の滞在時間比較は、競合と比べてユーザーがより興味を持ってくれているのはどちらかを知る、非常に分かりやすい指標だ。</p>
+<p>何故ここまで乖離が大きいのか（競合より30秒以上も滞在時間が短い）、サイト側の要因を掘り下げるべきだと考えた。</p>
+<h4>ステップ2.競合／自社分析　サイトを見比べてみた</h4>
+<p>競合サイトのほうが滞在時間が長いのはなぜか？</p>
+<p>何かしら要因がある前提でサイト比較してみることにした。自社サイトと競合サイトを見比べて違いを細かく検証してみることにした。</p>
+<p>その結果、競合は20～34歳女性（F1層）をメインターゲットと意識したサイト設計となっていることが分かった。</p>
+<p>そこで「20～34歳女性（F1層）が競合に流れているのではないか？」という仮説を立てた。</p>
+<p>この説が正しいとすれば、GA4、Google 広告の管理画面上にも数字の変化として現れているはずだ。</p>
+<h4>ステップ3.顧客分析　競合の流入キーワード、広告クリエイティブを確認した</h4>
+<p>※参考イメージとなります。</p>
+<p>仮説「20～34歳女性（F1層）が競合に流れているのではないか？」を裏付けるために、Similarweb で競合の流入キーワード・広告クリエイティブを確認してみた。</p>
+<p>結果、競合は格安系のキーワードの比率が高く、インプレッション数の多いクリエイティブはF1層を意識した若い女性モデルのバナーデザインを使用していた。</p>
+<p>サイト・キーワード・広告クリエイティブから「競合B社のメインターゲットがF1層である」という仮説がより深まる検証結果となった。</p>
+<p>※Similarweb では、ディスプレイ広告のクリエイティブをインプレッション数順に並び替えて確認できます【要再確認】。</p>
+<h4>ステップ4.顧客分析　年齢別データの変化を確認した</h4>
+<p>仮説「20～34歳女性（F1層）が競合に流れているのではないか？」を裏付けるために、Google 広告で可視化されるユーザー属性のデータを確認してみることにした。</p>
+<p>「オーディエンス」の「ユーザー属性」から、年齢別／性別でクリック数、コンバージョン数を確認することが可能だ【要再確認】。なお、Google 広告の年齢区分は「18～24歳」「25～34歳」などで、F1層とは完全には一致しないため、該当する区分を合算して見る【要再確認】。</p>
+<p>3ヶ月前のレポートと比べてF1層（赤線）のコンバージョン数が低下（45件から19件）していることがわかった。</p>
+<p>顧客分析を行う際には、GA4、Google 広告の両方を確認することが有効だ。</p>
+<p>※GA4 の管理画面上でも、「レポート」の「ユーザー」にある「ユーザー属性の詳細」で年齢・性別を確認できます。ただし Google シグナルの設定やデータしきい値の影響で、数値が表示されない場合があります【要再確認】。</p>
+<h4>■改善施策編</h4>
+<h4>ステップ5.実施施策の洗い出し</h4>
+<p>これまでの分析から、競合が戦略的にF1層を取り込んでいるであろうことが推測できた。</p>
+<p>そこで化粧品会社A社の担当者様にこれまでの情報を共有して会議を行った結果、現状最も獲得が多いF2層のコンバージョン数を最大化させることを目標として、広告側とサイト側両方からアプローチする4つの施策を実施することにした。</p>
+<p>※F2層の顧客を抱えている大手競合サイトの流入キーワードを Similarweb で確認、「しわ」などのF2層の代表的な悩みキーワードが見られたため、参考にキーワードの追加も実施してみた。</p>
+<p>・【入札の最適化】　年齢別入札調整を導入。35～44歳に対する入札単価の強化。なお、スマート自動入札では入札単価調整が反映されない場合があるため、手動入札のキャンペーンで実施した【要再確認】。</p>
+<p>・【広告文の最適化】レスポンシブ検索広告の見出しに「35歳からのスキンケア対策」と年齢を明確に記述。</p>
+<p>・【サイトの最適化】F2層のユーザー心理を掴むためのデザイン改修。</p>
+<p>・【キーワード最適化】F2層の悩みキーワードを追加＆強化「しみ、くすみ、しわ」etc</p>
+<h4>ステップ6.結果確認</h4>
+<p>F2層のコンバージョン数最大化を狙った4つの施策を実施後、1ヶ月が経過した。</p>
+<p>施策前後の結果を比較したところ、Google 広告と GA4 の管理画面上で下記のような改善が確認できた。</p>
+<p>・【入札の最適化】　F2層からのクリック数が約2倍、コンバージョン数も1.5倍まで増加した。</p>
+<p>・【広告文の最適化】クリック率が0.2％上昇した。</p>
+<p>・【サイトの最適化】滞在時間（GA4 では平均エンゲージメント時間）、コンバージョン率が僅かに改善した。</p>
+<p>・【キーワード最適化】表示回数、クリック数は着実に増加した。</p>
+<h4>■まとめ　各ツールと見るべき指標</h4>
+<p>広告運用で成果を上げるために便利な指標をピックアップしました。</p>
+<p>必要に応じてさまざまな指標を活用する必要があります。</p>
+<p>まずは基本的な指標をインプットしておきましょう。</p>
+<p>1.</p><details class="orig"><summary>原文を見る</summary><p>■はじめに</p><p>３C分析というフレームワークをご存じの方は多いだろうと思います。</p><p>リスティング広告の現場では３C分析をどう活用しているのか、具体的な参考事例を知りたい。</p><p>というお声を頂いたので、この記事ではストーリー仕立ての構成で</p><p>【SimilarWeb】×【リスティング広告】×【GoogleAnalytics】を活用した広告運用における３C分析 をご紹介します。</p><p>※広告運用者視点に立った狭義の３C分析の例になります。SimilarWeb PRO（有料版）の記事になります。</p><p>■化粧品会社A社の場合</p><p>女性向け化粧品の通販サイトA社がリスティング広告を始めて3年半が経過、</p><p>幸いなことに最近まで競合が少ないお陰で、検索広告を中心に満足な成果を上げていた。</p><p>しかし、3ヶ月前に突如現れた競合B社がリスティング広告に本格参入した影響で、</p><p>コンバージョン数が顕著に減少してしまった。</p><p>A社のリスティング広告担当者は打開策を打ち出せずにいた。</p><p>とりあえず非常によく知られたマーケティングの３C分析を用いて現状を分析することにした。</p><p>■３C分析編</p><p>ステップ１.競合／自社分析　サイトの滞在時間を比較してみた</p><p>リスティング広告の競合広告文やキーワードをチェックしても、数値で比較することは困難だ。</p><p>そこでSimilarWebで、自社と競合サイトの滞在時間の比較データを見てみることにした。</p><p>※SimilarWebでは有料広告に絞り込んだ滞在時間の比較も可能です。</p><p>SimilarWebの平均滞在時間比較は、</p><p>競合と比べて ユーザーがより興味を持ってくれているのはどちらか</p><p>参考になる非常に分かりやすい指標だ。</p><p>何故ここまで乖離が大きいのか（競合より30秒以上も滞在時間が短い）</p><p>サイト側の要因を掘り下げるべきだと考えた。</p><p>ステップ2.競合／自社分析　サイトを見比べてみた</p><p>競合サイトのほうが滞在時間が長いのはなぜか？</p><p>何かしら要因がある前提でサイト比較してみることにした。</p><p>自社サイトと競合サイトを見比べて違いを細かく検証してみることにした。</p><p>その結果、競合は20～34歳女性（F1層）をメインターゲットと意識したサイト設計となっていることが分かった。</p><p>そこで「20～34歳女性（F1層）が競合に流れているのではないか？」という仮説を立てた。</p><p>この説が正しいとすれば、Google Analytics、Google Adwordsの管理画面上にも数字の変化として現れているはずだ。</p><p>ステップ3.顧客分析　競合の流入キーワード、広告クリエイティブを確認した</p><p>※参考イメージとなります。</p><p>仮説「20～34歳女性（F1層）が競合に流れているのではないか？」を裏付けるために</p><p>SimilarWebで競合の流入キーワード・広告クリエイティブを確認してみた。</p><p>結果、競合は格安系のキーワードの比率が高く、インプレッション数の多いクリエイティブはF1層を意識した若い女性モデルのバナーデザインを使用していた。</p><p>サイト・キーワード・広告クリエイティブから「競合B社のメインターゲットがF1層である」</p><p>という仮説がより深まる検証結果となった。</p><p>※SimilarWebPROのアップデートにより最近ディスプレイ広告でインプレッション数順に並び替えが可能になりました。</p><p>ステップ4.顧客分析　年齢別データの変化を確認した</p><p>仮説「20～34歳女性（F1層）が競合に流れているのではないか？」を裏付けるために</p><p>Google AdWordsで可視化されるユーザー属性のデータを確認してみることにした。</p><p>ユーザーリストタブから、年齢別／性別でクリック数、コンバージョン数を確認することが可能だ。</p><p>3ヶ月前のレポートと比べてF1層（赤線）のコンバージョン数が低下（45件→19件）していることがわかった。</p><p>顧客分析を行う際には、Google Analytics、Google AdWords両方確認することが有効だ。</p><p>※Google Analyticsの管理画面上でも「ユーザー属性」→「年齢」「性別」にて確認できます。</p><p>■改善施策編</p><p>ステップ5.実施施策の洗い出し</p><p>これまでの分析から、競合が戦略的にF1層を取り込んでいるであろうことが推測できた。</p><p>そこで化粧品会社A社の担当者様にこれまでの情報を共有して会議を行った結果</p><p>現状最も獲得が多いF2層のコンバージョン数を最大化させることを目標として、</p><p>広告側とサイト側両方からアプローチする4本の施策を実施することにした。</p><p>※F2層の顧客を抱えている大手競合サイトの流入キーワードをSimilarWebで確認、</p><p>「しわ」などのF2層の代表的な悩みキーワードが見られたため、参考にキーワードの追加も実施してみた。</p><p>・【入札の最適化】　年齢別入札調整を導入。35～44歳に対する入札単価の強化</p><p>・【広告文の最適化】広告文にて「35歳からのスキンケア対策」と年齢を明確に記述</p><p>・【サイトの最適化】F2層のユーザー心理を掴むためのデザイン改修</p><p>・【キーワード最適化】F2層の悩みキーワードを追加＆強化「しみ、くすみ、しわ」etc</p><p>ステップ6.結果確認</p><p>F2層のコンバージョン数最大化を狙った3つの施策を実施後、1ヶ月が経過した。</p><p>施策前後の結果を比較したところ、リスティング広告とGoogle Analyticsの管理画面上で下記のような改善が確認できた。</p><p>・【入札の最適化】　→F2層からのクリック数が約2倍、コンバージョン数も1.5倍まで増加した。</p><p>・【広告文の最適化】→クリック率が0.2％上昇した。</p><p>・【サイトの最適化】→滞在時間、コンバージョン率が僅かに改善した。</p><p>・【キーワード最適化】→表示回数、クリック数は着実に増加した。</p><p>■まとめ　各ツールと見るべき指標</p><p>広告運用で成果を上げるために便利な指標をピックアップしました。</p><p>必要に応じてさまざまな指標を活用する必要があります。</p><p>まずは基本的な指標をインプットしておきましょう。</p><p>1.競合分析（Competitor）</p><p>■目的</p><p>競合の数、戦略、パフォーマンスを把握する。</p><p>■ツール</p><p>SimilarWeb　（競合サイトの流入キーワード、滞在時間、直帰率etc）</p><p>2.顧客分析（Customer）</p><p>■目的</p><p>市場や顧客のニーズの変化を把握する。</p><p>■ツール</p><p>Google AdWords　（広告流入の年齢、性別、流入キーワード、プレースメント etc）</p><p>Google Analytics　（自社サイト流入の年齢、性別、滞在時間、直帰率 etc）</p><p>3.自社分析（Company）</p><p>■目的</p><p>自社の売上高、市場シェアの変化を把握する。</p><p>■ツール</p><p>Google AdWords　（表示回数、クリック数、コンバージョン数 etc）</p><p>Google Analytics　（集客チャネル分析、行動フロー分析 etc）</p><p>■終わりに</p><p>運用担当者はどうしてもリスティング広告管理画面の情報に囚われがちです。</p><p>しかしそこから一歩外に出てみると、より本質的なアプローチが見えることもあります。</p><p>今回の事例のように競合の登場によって</p><p>「誰が」「何が」「どのように」変化したのか？</p><p>実際の改善に繋げたストーリーをいくつ持っているかがマーケターとしての価値だと考えています。</p><p>様々なツールの強みを理解して活かすことで、日々の運用の価値を高めていきましょう。</p><p>ギャプライズはSimilarWeb社のオフィシャルパートナーです。</p><p>SimilarWebに関するお問い合わせ先</p><p>https://www.similar-web.jp/</p></details></div></details>
+<details class="rw"><summary><span class="dn">3</span><span class="ds"><b>【上級】AdWords広告概論Vol.2 キレイな広告の作り方</b><span class="dl">AdWordsをGoogle 広告に置換（タイトル、連載一覧、見出し、本文すべて）</span><span class="dl">広告表示オプションをアセットに置換し、コールアウト、価格表示オプションもそれぞれコールアウトアセット、価格アセットに変更</span></span><span class="dm">旧用語 15箇所</span></summary><div class="rwbody"><h4>変更点サマリー</h4>
+<ul>
+<li>AdWordsをGoogle 広告に置換（タイトル、連載一覧、見出し、本文すべて）</li>
+<li>広告表示オプションをアセットに置換し、コールアウト、価格表示オプションもそれぞれコールアウトアセット、価格アセットに変更</li>
+<li>レスポンシブ検索広告の仕組み（見出し・説明文の自動組み合わせ）を、文字数増加と語句重複の説明に追記</li>
+<li>2016年の広告費比率（スマートフォン62％、PC38％）は旧データであると明記し、現状は【要再確認】とした。出典URLは省略</li>
+<li>最大文字数291文字、モバイルの横幅（全角約22文字、iPhone 6系）は2017年当時の値と明記し、現行は【要再確認】とした</li>
+<li>作成フローの「実際の広告表示確認」に、広告プレビューと診断ツールでの複数パターン確認を追記</li>
+<li>見出し構成、段落構成、「商品パッケージ（表・裏）」の比喩、文体は原文を維持</li>
+</ul>
+<h4>【上級】Google 広告概論Vol.2 キレイな広告の作り方</h4>
+<p>連載記事「書籍では教えてくれない運用型広告」</p>
+<p>【広告概論　記事一覧】</p>
+<p>■Google 広告概論Vol.0 はじめに</p>
+<p>シリーズ記事の全体像を説明しています。</p>
+<p>■Google 広告概論Vol.1 商品パッケージ化が進む広告の未来</p>
+<p>商品パッケージ化が進む広告の未来とは何か？</p>
+<p>■Google 広告概論Vol.2 キレイな広告の作り方</p>
+<p>広告文字数が増加する今注意すべき点とは</p>
+<p>■Google 広告概論Vol.3 アセット</p>
+<p>商品パッケージ（裏）としての役割とは</p>
+<p>■Google 広告概論Vol.4 広告文</p>
+<p>商品パッケージ（表）としての役割とは</p>
+<h4>B’zの歌詞より長いGoogle 広告</h4>
+<p>数え間違いなければ、B’z “消えない虹”の歌詞文字数は全角255文字です。</p>
+<p>一方、当時私が目視にて確認したGoogle 広告の最大文字数は全角291文字※でした。</p>
+<p>（※アセット4種類が同時表示された場合且つ、価格アセットを展開表示した場合。2017年当時の確認結果であり、現行の表示では異なる可能性があります【要再確認】）</p>
+<p>極端な例かもしれません。</p>
+<p>しかし事実として検索広告は、B’zの歌詞の文字数を超える可能性が十二分にあります。</p>
+<h4>キレイな広告の３つの条件</h4>
+<p>大きな２つの広告環境の変化が起きています。</p>
+<p>１つ目はアセットの拡大に加え、レスポンシブ検索広告で見出しと説明文を複数登録して自動で組み合わせる形式が標準となったことで、広告に載る情報量が増加の一途をたどったことです。</p>
+<p>２つ目はスマートフォン広告の比率の高まりです。2016年の広告費比率はスマートフォン広告62％、PC広告38％という調査結果が出ており、現在はこの比率がさらに高い水準にあると考えられます【要再確認】。</p>
+<p>引用：CCI　2016年 インターネット広告市場規模推計調査（2017年4月公表。旧URLは掲載を省略しています）</p>
+<p>よって今後は以下３つの条件をクリアした「キレイな広告」を意識して広告を作成することが望ましいと考えられます。</p>
+<ul>
+<li>語句の重複がない</li>
+<li>可読性を意識する</li>
+<li>モバイルの横幅を意識する</li>
+</ul>
+<h4>キレイな広告との比較</h4>
+<p>具体例としてキレイな広告とキレイでない（煩雑な）広告を比較してみましょう。</p>
+<p>キレイな広告（左）はキレイでない広告（右）と比べてアセットがスッキリしていて見やすいはずです。</p>
+<p>キレイでない広告（右）は語句の重複（長い赤下線）が多く、モバイルの横幅を意識していないため文字省略（短い赤下線）が多発している望ましくない広告と言えるでしょう。</p>
+<p>（画像は現行の管理画面・表示例に差し替える前提です）</p>
+<h4>キレイな広告の作り方</h4>
+<h4>1 語句の重複がない</h4>
+<p>広告文字数が増加した結果、意図せぬ広告内での語句の重複が発生しやすくなっています。</p>
+<p>実際に様々な検索広告を見てみると、意図していないであろう語句重複を見かけます。語句の重複に気づかないまま配信している広告は意外と多いように感じています。</p>
+<p>このような広告は、悪目立ちしてしまい、基本あまり好ましくはありません。</p>
+<p>特にレスポンシブ検索広告では、見出しと説明文の組み合わせが配信ごとに変わります。どの組み合わせで表示されても、見出し同士やアセットとの間で語句が重なりにくいように設計する必要があります。必要に応じて、見出しの固定機能で表示位置をコントロールする方法もあります【要再確認】。</p>
+<p>語句の重複がない広告を作成するポイントはシンプルに２つです。</p>
+<ul>
+<li>広告作成時に全体像をイメージする</li>
+<li>モバイルの実機で表示を確認する</li>
+</ul>
+<p>ここでは上記２点をカバーすることが可能な広告作成フローをご紹介します。</p>
+<p>画像：キレイな広告の作成フロー（現行の画面名に合わせて差し替え予定）</p>
+<p>時間がないから取り急ぎ広告文だけ先に設定して、アセットは後回し。</p>
+<p>ついついやってしまいがちですが語句重複の元、可能な限り避けるべきです。</p>
+<p>作成フローを元に一貫して設定することを強くオススメします。</p>
+<p>「⑦実際の広告表示確認」はとても重要です。</p>
+<p>特にモバイル端末は画面サイズが異なりテキストが省略されやすいです。レスポンシブ検索広告は組み合わせが変わるため、広告プレビューと診断ツールなどで複数のパターンを確認しましょう【要再確認】。</p>
+<p>実機での表示確認は見せ方を最適化する上で必須です。</p>
+<h4>2 可読性を意識する</h4>
+<p>文字数300文字近くにも及ぶ広告がメリハリなく長文で記述されると要点が伝わりません。</p>
+<ul>
+<li>広告文（見出し・説明文）は「商品パッケージ（表）」として、魅力的なキャッチコピーを記述する</li>
+<li>アセットは「商品パッケージ（裏）」として、事実情報を羅列する</li>
+</ul>
+<p>というように同じ広告内でもメリハリをつけて可読性を上げる工夫を取り入れる必要があります。</p>
+<p>記号なども組み込みながら、読みやすい、頭に情報が入りやすい魅せ方になるよう調整しましょう。</p>
+<p>関連記事：</p>
+<p>Google 広告概論 Vol.1 商品パッケージ化が進む広告の未来</p>
+<h4>3 モバイルの横幅を意識する</h4>
+<p>例えば、全角10文字でコールアウトアセットを4本入稿した場合、ざっと全角10文字×4本＝40文字横に並ぶ計算になります。</p>
+<p>しかし、モバイル端末画面サイズの制限により、実際に横に</p><details class="orig"><summary>原文を見る</summary><p>連載記事「書籍では教えてくれない運用型広告</p><p>」</p><p>【広告概論　記事一覧】</p><p>■AdWords広告概論Vol.0 はじめに</p><p>シリーズ記事の全体像を説明しています。</p><p>■AdWords広告概論Vol.1 商品パッケージ化が進む広告の未来</p><p>商品パッケージ化が進む広告の未来とは何か？</p><p>■AdWords広告概論Vol.2 キレイな広告の作り方</p><p>広告文字数が増加する今注意すべき点とは</p><p>■AdWords広告概論Vol.3 広告表示オプション</p><p>商品パッケージ（裏）としての役割とは</p><p>■AdWords広告概論Vol.4 広告文</p><p>商品パッケージ（表）としての役割とは</p><p>B’zの歌詞より長いAdWords広告</p><p>数え間違いなければ、B’z “消えない虹”の歌詞文字数は全角255文字です。</p><p>一方、私が目視にて確認したAdWords広告の最大文字数は全角291文字 ※ でした。</p><p>（※AdWords広告表示オプション４種類が同時表示された場合且つ、価格表示オプションをエキスパンドした場合）</p><p>極端な例かもしれません。</p><p>しかし事実として検索広告は、B’zの歌詞の文字数を超える可能性が十二分にあります。</p><p>キレイな広告の３つの条件</p><p>大きな２つの広告環境の変化が起きています。</p><p>１つ目は広告表示オプションの拡大に伴い広告の文字数は増加の一途をたどりました。</p><p>２つ目は2016年の広告費比率はスマートフォン広告62％、PC広告38％という調査結果が出ています。</p><p>引用：CCI　2016年 インターネット広告市場規模推計調査</p><p>http://www.cci.co.jp/news/release/2017_04_17/1.html</p><p>よって今後は以下３つの条件をクリアした「キレイな広告」を意識して広告を作成することが望ましいと考えられます。</p><p>語句の重複がない</p><p>可読性を意識する</p><p>モバイルの横幅を意識する</p><p>キレイな広告との比較</p><p>具体例としてキレイな広告とキレイでない（煩雑な）広告を比較してみましょう。</p><p>キレイな広告（左）はキレイでない広告（右）と比べて広告表示オプションがスッキリしていて見やすいはずです。</p><p>キレイでない広告（右）は語句の重複（長い赤下線）が多く、モバイルの横幅を意識していないため文字省略（短い赤下線）が多発している望ましくない広告と言えるでしょう。</p><p>キレイな広告の作り方</p><p>1 語句の重複がない</p><p>広告文字数が増加した結果、意図せぬ広告内での語句の重複が発生しやすくなっています。</p><p>実際に様々な検索広告を見てみると、意図していないであろう語句重複を見かけます。</p><p>このような広告は、悪目立ちしてしまい、基本あまり好ましくはありません。</p><p>語句の重複がない広告を作成するポイントはシンプルに２つです。</p><p>広告作成時に全体像をイメージする</p><p>モバイルの実機で表示を確認する</p><p>ここでは上記２点をカバーすることが可能な広告作成フローをご紹介します。</p><p>画像：キレイな広告の作成フロー</p><p>時間がないから取り急ぎ広告文だけ先に設定して、広告表示オプションは後回し。</p><p>ついついやってしまいがちですが語句重複の元、可能な限り避けるべきです。</p><p>作成フローを元に一貫して設定することを強くオススメします。</p><p>「⑦実際の広告表示確認」はとても重要です。</p><p>特にモバイル端末は画面サイズが異なりテキストが省略されやすいです。</p><p>実機での表示確認は見せ方を最適化する上で必須です。</p><p>2 可読性を意識する</p><p>文字数300文字近くにも及ぶ広告がメリハリなく長文で記述されると要点が伝わりません。</p><p>広告文は「商品パッケージ（表）」として、魅力的なキャッチコピーを記述する</p><p>広告表示オプションは「商品パッケージ（裏）」として、事実情報の羅列する</p><p>というように同じ広告内でもメリハリをつけて可読性を上げる工夫を取り入れる必要があります。</p><p>記号なども組み込みながら、読みやすい、頭に情報が入りやすい魅せ方になるよう調整しましょう。</p><p>関連記事： AdWords広告概論</p><p>Vol.1</p><p>商品パッケージ化が進む広告の未来</p><p>3 モバイルの横幅を意識する</p><p>例えば、全角10文字でコールアウトを4本入稿した場合、ざっと全角10文字×4本＝40文字横に並ぶ計算になります。</p><p>しかし、モバイル端末画面サイズの制限により、実際に横に並ぶ文字数は全角約22文字※です。</p><p>（※2017年5月現在国内で主流のモバイル端末iPhone 6系を想定した文字数）</p><p>画像：モバイル端末の横に並ぶ文字数</p><p>端末がiphone6系の場合</p><p>全角10文字×4本入稿していても、実際に表示されるコールアウトは最大2本です。</p><p>基本的には、主流のモバイル端末の横幅サイズに合わせて文字数を意識しましょう。</p><p>意図せぬ文字数の省略をかなり低減することが可能です。</p><p>終わりに</p><p>文字数の制限が緩和された今、広告に正解と呼べるかたちは存在しないと考えています。</p><p>また、実際には掲載順位や競合広告の影響など、実に様々な外的要因を受けます。</p><p>情報量と可読性のバランスを取りつつ魅力的なキャッチコピーの広告を作成すること。</p><p>それには作詞に近しい労力が必要なのかもしれません。</p><p>より魅力的な広告をユーザーに届けられるように日々の試行錯誤を大事にしましょう。</p></details></div></details>
+</div>
+</div>
+</section>
+
+<section id="ai">
+<div class="sh"><span class="n">02</span><h2>AIでできること 10案</h2></div>
+<div class="in">
+<p class="note">どれも「人に聞かず・人に見せず・ひとりで回せる」ものだけを選びました。番号ひとつで返事をもらえれば、その1つを先に作ります。</p>
+<ol class="cards"><li class="card"><span class="no">1</span><div><h3>旧用語リライトチェッカー</h3><p class="io"><span class="lab">入力</span><span>記事のURL（または本文）</span></p><p class="io"><span class="lab">出力</span><span>古い用語の一覧、現行名への置換案、画面名や数値など要再確認の箇所に印を付けた差分。このページの鮮度チェックがその第1回です</span></p></div></li><li class="card"><span class="no">2</span><div><h3>業界分析シートの自動更新</h3><p class="io"><span class="lab">入力</span><span>四半期決算の発表（LINEヤフー、Pinterest、Google、Metaなど）</span></p><p class="io"><span class="lab">出力</span><span>noteで作っていた「業界分析シート」と同じ型の下書き。数字の転記と前年同期比まで埋めた状態</span></p></div></li><li class="card"><span class="no">3</span><div><h3>130の基本チェックリストの自動採点</h3><p class="io"><span class="lab">入力</span><span>アカウント構成のエクスポート（キャンペーン、広告グループ、アセットのCSV）</span></p><p class="io"><span class="lab">出力</span><span>130項目のうち該当する指摘だけを抜き出した一覧と、優先順位つきの修正メモ</span></p></div></li><li class="card"><span class="no">4</span><div><h3>検索語句レポートの自動仕分け</h3><p class="io"><span class="lab">入力</span><span>検索語句レポートのCSV</span></p><p class="io"><span class="lab">出力</span><span>除外候補、新規キーワード候補、指名の3区分。除外リストはそのまま貼れる形式で、分類の理由を1行ずつ</span></p></div></li><li class="card"><span class="no">5</span><div><h3>広告見出しの量産と文字数チェック</h3><p class="io"><span class="lab">入力</span><span>商材の説明、訴求の軸、使わない表現</span></p><p class="io"><span class="lab">出力</span><span>見出し15本と説明文4本の案。字数超過は自動で除外し、薬機法や景表法に触れそうな語には注意印</span></p></div></li><li class="card"><span class="no">6</span><div><h3>月次レポートのコメント下書き</h3><p class="io"><span class="lab">入力</span><span>管理画面の月次CSV（クリック、CV、CPA、前月比）</span></p><p class="io"><span class="lab">出力</span><span>「増減の事実、考えられる要因、来月の打ち手」の3段落と、スライド1枚ぶんの箇条書き</span></p></div></li><li class="card"><span class="no">7</span><div><h3>仕様変更の週次まとめ</h3><p class="io"><span class="lab">入力</span><span>Google 広告とYahoo!広告のヘルプ更新とお知らせ（毎週自動で取得）</span></p><p class="io"><span class="lab">出力</span><span>自分の運用に関係しそうな変更だけを3行で。記事ネタの候補も1つ添える</span></p></div></li><li class="card"><span class="no">8</span><div><h3>連載Vol.5「戦略」の下書き</h3><p class="io"><span class="lab">入力</span><span>Vol.0からVol.4の本文と、話したいことの箇条書き</span></p><p class="io"><span class="lab">出力</span><span>「世界一分かりやすい運用型広告の世界」の文体に合わせたVol.5の初稿。公開予定のまま止まっている回です</span></p></div></li><li class="card"><span class="no">9</span><div><h3>広告バナーサイズ一覧表の2026年版</h3><p class="io"><span class="lab">入力</span><span>各媒体の公式仕様ページ（自動で取得）</span></p><p class="io"><span class="lab">出力</span><span>2021年の保存版記事を今の仕様で更新した表。変わったサイズと増えた媒体に印を付けた差分つき</span></p></div></li><li class="card"><span class="no">10</span><div><h3>音声メモから記事化</h3><p class="io"><span class="lab">入力</span><span>通勤中の3分の音声メモ</span></p><p class="io"><span class="lab">出力</span><span>文字起こし、見出し構成、本文、note用の短縮版。話すだけで記事になる</span></p></div></li></ol>
+</div>
+</section>
+
+<section id="sauna">
+<div class="sh"><span class="n">03</span><h2>熊本サウナ 候補日</h2></div>
+<div class="in">
+<p class="note">10月は予定が埋まっていて動けませんでした。11月で空いている日を出します。</p>
+<div class="opts"><div class="opt"><span class="k">A</span><div><h3>11月21日(土)から23日(月・祝)</h3><p>3連休をまるごと。2泊でサウナをはしごできる</p></div></div><div class="opt"><span class="k">B</span><div><h3>11月22日(日)から23日(月・祝)</h3><p>1泊。日曜の朝に出て、祝日の夜に戻る</p></div></div></div>
+<p class="ask">AかBか、どちらも難しければ別の週を。ふっこう割の販売状況は決まってから確認します</p>
+</div>
+</section>
+
+<footer>
+<b>返事は番号ひとつで大丈夫です</b>
+<p>このページは検索に出ません（樋爪さんだけに渡しています）</p>
+</footer>
+</div>
+</body></html>
