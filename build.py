@@ -65,7 +65,7 @@ art_rows = "".join(
     f'<tr><td class="main"><a href="{E(a["url"])}" target="_blank" rel="noopener">{E(a["title"])}</a></td>'
     f'<td data-l="日付">{a["date"].replace("-", ".")}</td>'
     f'<td data-l="文字数" class="num">{a["chars"]:,}</td>'
-    f'<td data-l="旧用語の内訳" class="chips">{chips(a)}</td>'
+    f'<td data-l="旧用語の内訳"><div class="chips">{chips(a)}</div></td>'
     f'<td data-l="件数" class="num">{a["total"]}</td></tr>'
     for a in rows)
 
@@ -205,18 +205,11 @@ footer p{{color:var(--mute);font-size:14px}}
  thead{{display:none}}
  table,tbody{{display:block;background:none;border:0}}
  tr{{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;margin-bottom:10px}}
- td{{display:flex;gap:12px;justify-content:space-between;align-items:baseline;border:0;padding:3px 0}}
- td::before{{content:attr(data-l);flex:none;width:5.5em;font-size:12px;font-weight:700;color:var(--mute)}}
+ td{{display:grid;grid-template-columns:5.5em 1fr;gap:12px;align-items:baseline;border:0;padding:3px 0}}
+ td::before{{content:attr(data-l);font-size:12px;font-weight:700;color:var(--mute)}}
  td.main{{display:block;padding:0 0 6px}}
  td.main::before{{content:none}}
- td.num,td.chips{{text-align:left}}
- td.num{{justify-content:flex-start}}
- td.num::before{{width:5.5em}}
- td>a,td.new,td:not(.main):not(.num):not(.chips){{flex:1}}
- td.chips{{display:flex}}
- td.chips .chip,td.chips .none{{flex:none}}
- td.chips{{flex-wrap:wrap}}
- td.chips::before{{width:100%}}
+ td.num{{text-align:left}}
  .rw>summary,.rw.pend{{flex-wrap:wrap;padding:14px}}
  .rw>summary::after{{margin-left:calc(1.1em + 14px)}}
  .dm{{margin-left:calc(1.1em + 14px);flex-basis:100%}}
