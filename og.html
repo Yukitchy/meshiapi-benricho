@@ -1,17 +1,22 @@
 <!doctype html><html lang="ja"><head><meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;900&family=Inter:wght@800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:1200px;height:630px}
-body{background:#fffdf8;font-family:"Zen Kaku Gothic New","Hiragino Sans",sans-serif;color:#14151a;padding:84px 88px;position:relative;overflow:hidden}
-.bar{position:absolute;left:0;top:0;bottom:0;width:20px;background:#1f4fd8}
-h1{margin:0;font-weight:900;font-size:128px;line-height:1.1;letter-spacing:-.02em;white-space:nowrap}
-p{margin:22px 0 0;font-size:36px;color:#6b6a63;font-weight:500}
-.t{position:absolute;left:88px;bottom:76px;display:flex;gap:56px}
-.t div{font-size:26px;color:#6b6a63;font-weight:500}
-.t b{display:block;font:800 76px/1 Inter,sans-serif;letter-spacing:-.03em;color:#14151a;margin-top:6px}
-.t .h b{color:#c2410c}
-.t small{font:700 26px "Zen Kaku Gothic New",sans-serif;color:#6b6a63;margin-left:4px;letter-spacing:0}
-</style></head><body><div class="bar"></div>
-<h1>めしあぴ便利帳</h1><p>運用型広告研究所の鮮度チェックと、AIでできること10案</p>
-<div class="t"><div>記事<b>30<small>本</small></b></div><div class="h">旧用語を含む記事<b>25<small>本</small></b></div><div class="h">旧用語<b>211<small>箇所</small></b></div></div>
+body{background:#0b0b0d;color:#e8e4da;font-family:"Noto Sans JP","Hiragino Sans",sans-serif;position:relative;overflow:hidden}
+.frame{position:absolute;inset:22px;border:1px solid #c9a84c}
+.frame::after{content:"";position:absolute;inset:8px;border:1px solid rgba(201,168,76,.28)}
+.sigil{position:absolute;left:50%;top:50%;width:900px;height:900px;transform:translate(-50%,-50%);color:#c9a84c;opacity:.35}
+.c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.eb{display:flex;align-items:center;gap:22px;font:700 22px/1 Inter,sans-serif;letter-spacing:.5em;color:#9a948a;margin-bottom:30px}
+.eb::before,.eb::after{content:"";width:90px;height:1px;background:#c9a84c}
+h1{margin:0;font-weight:900;font-size:128px;line-height:1.4;letter-spacing:.04em;white-space:nowrap}
+rt{font-size:26px;font-weight:700;color:#9a948a;letter-spacing:.04em}
+ruby{ruby-align:center}
+.seal{display:inline-block;vertical-align:top;margin:14px 0 0 12px;width:50px;height:50px;border:3px solid #b3122e;font:900 30px/44px "Noto Sans JP";text-align:center;transform:rotate(4deg);letter-spacing:0}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs><symbol id="sigil" viewBox="0 0 200 200"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><circle cx="100" cy="100" r="96" stroke-width="1.4"/><circle cx="100" cy="100" r="91" stroke-width="3" stroke-dasharray="1 5.1" stroke-linecap="butt"/><circle cx="100" cy="100" r="84" stroke-width="1"/><path stroke-width="1.1" d="M100 34V20M100 29l6-6" transform="rotate(0.0 100 100)"/><path stroke-width="1.1" d="M100 34V22M94 18l6 6 6-6" transform="rotate(22.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M96 30l8-4" transform="rotate(45.0 100 100)"/><path stroke-width="1.1" d="M100 34l4-5-8-4 4-5" transform="rotate(67.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M100 29l6-6" transform="rotate(90.0 100 100)"/><path stroke-width="1.1" d="M100 34V22M94 18l6 6 6-6" transform="rotate(112.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M96 30l8-4" transform="rotate(135.0 100 100)"/><path stroke-width="1.1" d="M100 34l4-5-8-4 4-5" transform="rotate(157.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M100 29l6-6" transform="rotate(180.0 100 100)"/><path stroke-width="1.1" d="M100 34V22M94 18l6 6 6-6" transform="rotate(202.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M96 30l8-4" transform="rotate(225.0 100 100)"/><path stroke-width="1.1" d="M100 34l4-5-8-4 4-5" transform="rotate(247.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M100 29l6-6" transform="rotate(270.0 100 100)"/><path stroke-width="1.1" d="M100 34V22M94 18l6 6 6-6" transform="rotate(292.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M96 30l8-4" transform="rotate(315.0 100 100)"/><path stroke-width="1.1" d="M100 34l4-5-8-4 4-5" transform="rotate(337.5 100 100)"/><circle cx="100" cy="100" r="62" stroke-width="1"/><circle cx="100" cy="100" r="59" stroke-width="4" stroke-dasharray="0.8 3.2" stroke-linecap="butt"/><circle cx="100" cy="100" r="46" stroke-width="1" stroke-dasharray="6 3"/><circle cx="100" cy="100" r="30" stroke-width="1"/><circle cx="100" cy="100" r="10" stroke-width="1"/><circle cx="100" cy="100" r="2" fill="currentColor"/></g></symbol></defs></svg>
+<div class="frame"></div>
+<svg class="sigil" viewBox="0 0 200 200"><use href="#sigil"/></svg>
+<div class="c"><div class="eb">GRIMORIUM MESSIAE</div>
+<h1><ruby>救世主<rt>メシア</rt></ruby>の<ruby>魔導書<rt>グリモワール</rt></ruby><span class="seal">禁</span></h1></div>
 </body></html>
