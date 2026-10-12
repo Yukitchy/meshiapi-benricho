@@ -1,0 +1,572 @@
+{
+ "terms": [
+  {
+   "old": "AdWords",
+   "new": "Google 広告",
+   "note": "2018年7月に「Google AdWords」から「Google 広告」へ改名",
+   "pat": "AdWords",
+   "ref": "https://blog.google/technology/ads/new-advertising-brands/"
+  },
+  {
+   "old": "広告表示オプション",
+   "new": "アセット",
+   "note": "2022年に「広告表示オプション」は「アセット」へ名称変更",
+   "pat": "広告表示オプション",
+   "ref": "https://support.google.com/google-ads/answer/7331111?hl=ja"
+  },
+  {
+   "old": "スマートディスプレイキャンペーン",
+   "new": "P-MAX（パフォーマンス最大化）キャンペーン",
+   "note": "スマートディスプレイキャンペーンは2022年にP-MAXへ移行",
+   "pat": "スマートディスプレイ",
+   "ref": "https://support.google.com/google-ads/answer/10724817?hl=ja"
+  },
+  {
+   "old": "拡張テキスト広告",
+   "new": "レスポンシブ検索広告",
+   "note": "2022年6月30日以降、拡張テキスト広告は新規作成・編集不可",
+   "pat": "拡張テキスト広告",
+   "ref": "https://support.google.com/google-ads/answer/1704389?hl=ja"
+  },
+  {
+   "old": "YDN",
+   "new": "Yahoo!広告 ディスプレイ広告（運用型）(YDA)",
+   "note": "2020年にYDNからYDAへ移行",
+   "pat": "YDN",
+   "ref": "https://www.lycbiz.com/jp/news/yahoo-ads/20210623"
+  },
+  {
+   "old": "Yahoo!プロモーション広告 / スポンサードサーチ",
+   "new": "Yahoo!広告 検索広告",
+   "note": "2020年にブランド統合",
+   "pat": "スポンサードサーチ|Yahoo!プロモーション広告|Yahoo!プロモーション",
+   "ref": "https://www.lycbiz.com/jp/news/yahoo-ads/20200827-02"
+  },
+  {
+   "old": "Google アナリティクス（UA）",
+   "new": "Google アナリティクス 4 (GA4)",
+   "note": "ユニバーサル アナリティクスは2023年7月に計測停止",
+   "pat": "GoogleAnalytics|Googleアナリティクス|Google アナリティクス|ユニバーサルアナリティクス",
+   "ref": "https://support.google.com/analytics/answer/11583528?hl=ja"
+  },
+  {
+   "old": "SimilarWeb",
+   "new": "Similarweb",
+   "note": "2021年前後から公式表記は小文字のw",
+   "pat": "SimilarWeb",
+   "ref": "https://www.similarweb.com/ja/"
+  },
+  {
+   "old": "PLA（商品リスト広告）",
+   "new": "ショッピング広告",
+   "note": "商品リスト広告(PLA)は「ショッピング広告」に呼称統一",
+   "pat": "PLA|商品リスト広告",
+   "ref": "https://support.google.com/google-ads/answer/2454022?hl=ja"
+  },
+  {
+   "old": "GDR（動的リマーケティング）",
+   "new": "動的リマーケティング（P-MAX/デマンドジェネレーション内）",
+   "note": "ディスプレイ単体の動的リマーケはP-MAX等へ移行",
+   "pat": "GDR",
+   "ref": "https://support.google.com/google-ads/answer/10724817?hl=ja"
+  }
+ ],
+ "articles": [
+  {
+   "date": "2021-04-27",
+   "title": "【保存版】広告バナーサイズ一覧表【ディスプレイ広告／SNS広告】",
+   "url": "https://listing.gaprise.com/blog/banner-size/",
+   "chars": 1337,
+   "hits": [
+    {
+     "old": "YDN",
+     "count": 1
+    }
+   ],
+   "total": 1
+  },
+  {
+   "date": "2019-06-24",
+   "title": "「書籍では教えてくれない運用型広告」シリーズについて",
+   "url": "https://listing.gaprise.com/blog/series-concept/",
+   "chars": 1694,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 8
+    },
+    {
+     "old": "広告表示オプション",
+     "count": 1
+    },
+    {
+     "old": "スマートディスプレイキャンペーン",
+     "count": 1
+    },
+    {
+     "old": "PLA（商品リスト広告）",
+     "count": 1
+    },
+    {
+     "old": "GDR（動的リマーケティング）",
+     "count": 1
+    }
+   ],
+   "total": 12
+  },
+  {
+   "date": "2019-05-31",
+   "title": "【上級】広告運用者がコンバージョンを10倍に導いた！フルチャネルマーケティング思考術",
+   "url": "https://listing.gaprise.com/blog/Full-channel-marketing",
+   "chars": 2390,
+   "hits": [],
+   "total": 0
+  },
+  {
+   "date": "2018-09-30",
+   "title": "【上級】時流を捉えるSimilarWeb活用事例",
+   "url": "https://listing.gaprise.com/blog/Traffic-source/",
+   "chars": 1838,
+   "hits": [
+    {
+     "old": "Yahoo!プロモーション広告 / スポンサードサーチ",
+     "count": 1
+    },
+    {
+     "old": "SimilarWeb",
+     "count": 10
+    }
+   ],
+   "total": 11
+  },
+  {
+   "date": "2018-01-31",
+   "title": "【初級】世界一分かりやすい運用型広告の世界Vol.4 広告形式",
+   "url": "https://listing.gaprise.com/blog/clear-advertisement4/",
+   "chars": 2724,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 2
+    },
+    {
+     "old": "広告表示オプション",
+     "count": 2
+    },
+    {
+     "old": "YDN",
+     "count": 2
+    }
+   ],
+   "total": 6
+  },
+  {
+   "date": "2018-01-31",
+   "title": "【初級】世界一分かりやすい運用型広告の世界Vol.3 広告媒体",
+   "url": "https://listing.gaprise.com/blog/clear-advertisement3/",
+   "chars": 5690,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 3
+    },
+    {
+     "old": "YDN",
+     "count": 3
+    },
+    {
+     "old": "Yahoo!プロモーション広告 / スポンサードサーチ",
+     "count": 1
+    }
+   ],
+   "total": 7
+  },
+  {
+   "date": "2018-01-31",
+   "title": "【初級】世界一分かりやすい運用型広告の世界Vol.2 広告ターゲティング",
+   "url": "https://listing.gaprise.com/blog/clear-advertisement2/",
+   "chars": 1962,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 1
+    },
+    {
+     "old": "YDN",
+     "count": 1
+    }
+   ],
+   "total": 2
+  },
+  {
+   "date": "2018-01-31",
+   "title": "【初級】世界一分かりやすい運用型広告の世界vol.1 運用型広告の本質",
+   "url": "https://listing.gaprise.com/blog/clear-advertisement1/",
+   "chars": 1402,
+   "hits": [],
+   "total": 0
+  },
+  {
+   "date": "2018-01-31",
+   "title": "【初級】世界一分かりやすい運用型広告の世界Vol.0 はじめに",
+   "url": "https://listing.gaprise.com/blog/clear-advertisement0/",
+   "chars": 767,
+   "hits": [],
+   "total": 0
+  },
+  {
+   "date": "2018-01-29",
+   "title": "【中級】スマートディスプレイキャンペーンの成果を加速させる2つのアプローチ",
+   "url": "https://listing.gaprise.com/blog/smart-display2",
+   "chars": 2230,
+   "hits": [
+    {
+     "old": "スマートディスプレイキャンペーン",
+     "count": 1
+    }
+   ],
+   "total": 1
+  },
+  {
+   "date": "2017-12-06",
+   "title": "【初級】ECサイトが今スグ導入検討すべき３つの広告配信機能【DSA,PLA,GDR】",
+   "url": "https://listing.gaprise.com/blog/ec-product/",
+   "chars": 2477,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 5
+    },
+    {
+     "old": "PLA（商品リスト広告）",
+     "count": 4
+    },
+    {
+     "old": "GDR（動的リマーケティング）",
+     "count": 3
+    }
+   ],
+   "total": 12
+  },
+  {
+   "date": "2017-10-31",
+   "title": "【最新】超簡単！プロモーション表示オプションの設定方法",
+   "url": "https://listing.gaprise.com/blog/promotion-display-option/",
+   "chars": 2446,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 2
+    },
+    {
+     "old": "広告表示オプション",
+     "count": 7
+    }
+   ],
+   "total": 9
+  },
+  {
+   "date": "2017-10-31",
+   "title": "【SimilarWeb】×【リスティング広告】×【GoogleAnalytics】３C分析による運用改善ストーリー",
+   "url": "https://listing.gaprise.com/blog/3c-analysis/",
+   "chars": 3202,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 4
+    },
+    {
+     "old": "Google アナリティクス（UA）",
+     "count": 1
+    },
+    {
+     "old": "SimilarWeb",
+     "count": 11
+    }
+   ],
+   "total": 16
+  },
+  {
+   "date": "2017-07-14",
+   "title": "【上級】AdWords広告概論Vol.4 広告文",
+   "url": "https://listing.gaprise.com/blog/ads-introduction4/",
+   "chars": 1954,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 5
+    },
+    {
+     "old": "広告表示オプション",
+     "count": 2
+    }
+   ],
+   "total": 7
+  },
+  {
+   "date": "2017-07-12",
+   "title": "【上級】AdWords広告概論Vol.3 広告表示オプション",
+   "url": "https://listing.gaprise.com/blog/ads-introduction3/",
+   "chars": 2737,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 10
+    },
+    {
+     "old": "広告表示オプション",
+     "count": 24
+    }
+   ],
+   "total": 34
+  },
+  {
+   "date": "2017-07-12",
+   "title": "【上級】AdWords広告概論Vol.2 キレイな広告の作り方",
+   "url": "https://listing.gaprise.com/blog/ads-introduction2/",
+   "chars": 2186,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 9
+    },
+    {
+     "old": "広告表示オプション",
+     "count": 6
+    }
+   ],
+   "total": 15
+  },
+  {
+   "date": "2017-07-12",
+   "title": "【上級】AdWords広告概論Vol.1 商品パッケージ化が進む広告の未来",
+   "url": "https://listing.gaprise.com/blog/ads-introduction1/",
+   "chars": 1466,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 6
+    },
+    {
+     "old": "広告表示オプション",
+     "count": 7
+    }
+   ],
+   "total": 13
+  },
+  {
+   "date": "2017-07-12",
+   "title": "【上級】AdWords広告概論Vol.0 はじめに",
+   "url": "https://listing.gaprise.com/blog/ads-introduction0/",
+   "chars": 721,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 6
+    },
+    {
+     "old": "広告表示オプション",
+     "count": 1
+    },
+    {
+     "old": "拡張テキスト広告",
+     "count": 1
+    }
+   ],
+   "total": 8
+  },
+  {
+   "date": "2017-07-11",
+   "title": "【中級】AdWords入札戦略とスマート自動入札の特徴導入時のポイント、AI化が進む広告運用の未来",
+   "url": "https://listing.gaprise.com/blog/bid-strategy/",
+   "chars": 2210,
+   "hits": [],
+   "total": 0
+  },
+  {
+   "date": "2017-07-11",
+   "title": "【中級】費用対効果を最大化するリマーケティング10の手法",
+   "url": "https://listing.gaprise.com/blog/remarketing10",
+   "chars": 2474,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 5
+    },
+    {
+     "old": "Google アナリティクス（UA）",
+     "count": 1
+    }
+   ],
+   "total": 6
+  },
+  {
+   "date": "2017-07-11",
+   "title": "【最新】超簡単！スマートディスプレイキャンペーンの設定方法",
+   "url": "https://listing.gaprise.com/blog/smart-display",
+   "chars": 1373,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 1
+    },
+    {
+     "old": "スマートディスプレイキャンペーン",
+     "count": 6
+    }
+   ],
+   "total": 7
+  },
+  {
+   "date": "2017-07-11",
+   "title": "【上級】運用の限界を突破するSimilarWeb活用事例",
+   "url": "https://listing.gaprise.com/blog/channelanalysis",
+   "chars": 2593,
+   "hits": [
+    {
+     "old": "SimilarWeb",
+     "count": 10
+    }
+   ],
+   "total": 10
+  },
+  {
+   "date": "2017-07-11",
+   "title": "【初級】SimilarWeb×広告運用　成果に繋げる広告配信手法まとめ",
+   "url": "https://listing.gaprise.com/blog/conflict",
+   "chars": 1841,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 1
+    },
+    {
+     "old": "YDN",
+     "count": 2
+    },
+    {
+     "old": "SimilarWeb",
+     "count": 7
+    }
+   ],
+   "total": 10
+  },
+  {
+   "date": "2017-07-07",
+   "title": "【最新】超簡単！価格表示オプションの設定方法",
+   "url": "https://listing.gaprise.com/blog/price-display-option/",
+   "chars": 1105,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 1
+    },
+    {
+     "old": "広告表示オプション",
+     "count": 6
+    },
+    {
+     "old": "拡張テキスト広告",
+     "count": 1
+    }
+   ],
+   "total": 8
+  },
+  {
+   "date": "2017-07-06",
+   "title": "【中級】提案力が上がる検索語句の新活用術",
+   "url": "https://listing.gaprise.com/blog/search-queries/",
+   "chars": 2504,
+   "hits": [],
+   "total": 0
+  },
+  {
+   "date": "2017-07-05",
+   "title": "【中級】誰でも簡単にCPAを下げられる！セグメント別データ集計術",
+   "url": "https://listing.gaprise.com/blog/data-aggregation/",
+   "chars": 1583,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 1
+    }
+   ],
+   "total": 1
+  },
+  {
+   "date": "2017-07-04",
+   "title": "【初級】A/Bテストの時間短縮！GoogleAdWordsのラベル機能活用術",
+   "url": "https://listing.gaprise.com/blog/abtest-shortening/",
+   "chars": 1247,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 2
+    }
+   ],
+   "total": 2
+  },
+  {
+   "date": "2017-07-03",
+   "title": "【基本】意外と知らない。Google／Yahoo!検索広告の５つの違い",
+   "url": "https://listing.gaprise.com/blog/search-advertising/",
+   "chars": 2059,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 1
+    },
+    {
+     "old": "Yahoo!プロモーション広告 / スポンサードサーチ",
+     "count": 2
+    }
+   ],
+   "total": 3
+  },
+  {
+   "date": "2017-07-02",
+   "title": "【上級】驚くほどCPAが改善する！GoogleAdWordsのコンテンツターゲットと応用術",
+   "url": "https://listing.gaprise.com/blog/content-target/",
+   "chars": 1739,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 2
+    },
+    {
+     "old": "Yahoo!プロモーション広告 / スポンサードサーチ",
+     "count": 1
+    }
+   ],
+   "total": 3
+  },
+  {
+   "date": "2017-07-01",
+   "title": "【上級】指名キーワードを配信すべき4つのメリットと2つの活用術",
+   "url": "https://listing.gaprise.com/blog/nominated-keywords/",
+   "chars": 4396,
+   "hits": [
+    {
+     "old": "AdWords",
+     "count": 3
+    },
+    {
+     "old": "広告表示オプション",
+     "count": 4
+    }
+   ],
+   "total": 7
+  }
+ ],
+ "meta": {
+  "blog": "運用型広告研究所",
+  "blog_url": "https://listing.gaprise.com/blog/",
+  "author": "樋爪康之",
+  "last_post": "2021-04-27",
+  "checked": "2026-10-12",
+  "articles": 30,
+  "with_hits": 25,
+  "total_hits": 211,
+  "chars": 64347
+ }
+}
