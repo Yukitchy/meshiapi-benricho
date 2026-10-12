@@ -88,7 +88,6 @@ term_rows = "".join(
     for t in terms)
 
 # ---- 記事表 ----
-rows = sorted(arts, key=lambda a: (-a["total"], a["date"]), reverse=False)
 rows = sorted(arts, key=lambda a: (a["total"], a["date"]), reverse=True)
 def chips(a):
     if not a["hits"]: return '<span class="none">なし</span>'
@@ -176,7 +175,7 @@ rt{font-size:max(12px,.24em);font-weight:700;letter-spacing:.04em;color:var(--mu
 .ring{display:block;width:44px;height:44px;margin:0;color:var(--gold)}
 header{text-align:center;padding:0 0 30px}
 .stage{position:relative;min-height:460px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px 0}
-.sigil{position:absolute;left:50%;top:50%;width:460px;height:460px;transform:translate(-50%,-50%);color:var(--gold);opacity:.35;pointer-events:none}
+.sigil{position:absolute;left:50%;top:50%;width:460px;height:460px;transform:translate(-50%,-50%);color:var(--gold);opacity:.28;pointer-events:none;-webkit-mask-image:radial-gradient(circle,transparent 12%,#000 46%);mask-image:radial-gradient(circle,transparent 12%,#000 46%)}
 .stage>*:not(.sigil){position:relative}
 .eyebrow{display:flex;align-items:center;gap:14px;font:700 12px/1 var(--num);letter-spacing:.5em;color:var(--mute);margin:0 0 14px}
 .eyebrow::before,.eyebrow::after{content:"";width:44px;height:1px;background:var(--gold);opacity:.7}
@@ -294,9 +293,9 @@ footer p{color:var(--mute);font-size:12.5px}
  thead{display:none}
  table,tbody{display:block;border:0;background:none}
  tr{display:block;background:var(--card);border:1px solid var(--line);padding:10px 12px;margin-bottom:10px}
- td{display:grid;grid-template-columns:5.2em 1fr;gap:10px;align-items:baseline;border:0;padding:3px 0}
- td::before{content:attr(data-l);font-size:12px;font-weight:900;color:var(--mute)}
- td.main{display:block;padding:0 0 6px}
+ td{display:block;position:relative;border:0;padding:3px 0 3px calc(5.2em + 10px)}
+ td::before{content:attr(data-l);position:absolute;left:0;top:5px;font-size:12px;font-weight:900;color:var(--mute)}
+ td.main{padding:0 0 6px}
  td.main::before{content:none}
  td.num{text-align:left}
 }
@@ -328,6 +327,23 @@ footer p{color:var(--mute);font-size:12.5px}
  .fix{padding:16px 14px 18px}
  .exit{padding:16px 14px;gap:10px 12px}
  .exit .no{font-size:36px}
+ .tile-date .v small{display:block;margin:6px 0 0}
+ .rw>summary{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px}
+ .rw>summary .dn{grid-column:1;grid-row:1}
+ .rw>summary .ds{grid-column:2 / 4;grid-row:1}
+ .rw>summary .dm{grid-column:2;grid-row:2;margin:0;flex-wrap:wrap;white-space:normal}
+ .rw>summary::after{grid-column:3;grid-row:2;margin:0;align-self:start;padding:4px 10px}
+ h1,h2,footer b{white-space:normal}
+ .btn{max-width:100%;white-space:normal;padding-block:10px}
+}
+.card{display:grid;grid-template-columns:2.2rem minmax(0,1fr);gap:12px}
+.card>.no{width:auto;font-size:28px;color:var(--gold)}
+.card>div{display:flex;flex-direction:column}
+.card .act{margin-top:auto;padding-top:16px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+@media(hover:hover){
+ .btn:hover{filter:brightness(1.15)}
+ .toc a:hover,.rw>summary:hover{background:#1c191d}
 }
 '''
 
@@ -356,7 +372,7 @@ CORNER = ('<symbol id="corner" viewBox="0 0 60 60"><g fill="none" stroke="curren
  '<circle cx="2" cy="52" r="1.2" fill="currentColor"/><circle cx="52" cy="2" r="1.2" fill="currentColor"/></g></symbol>')
 sep = '<div class="sep"><svg class="ring" aria-hidden="true"><use href="#ring"/></svg></div>'
 
-TJ = json.dumps(TXT, ensure_ascii=False).replace('<', '\u003c')
+TJ = json.dumps(TXT, ensure_ascii=False).replace("<", "\\u003c")
 page = f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -409,7 +425,7 @@ page = f'''<!doctype html>
 <div class="tile"><span class="l">記事</span><span class="v">{NA}<small>本</small></span></div>
 <div class="tile"><span class="l">旧用語を含む記事</span><span class="v">{NH}<small>本</small></span></div>
 <div class="tile"><span class="l">旧用語</span><span class="v">{NT}<small>箇所</small></span></div>
-<div class="tile"><span class="l">最終更新</span><span class="v">2021<small>年4月</small></span></div>
+<div class="tile tile-date"><span class="l">最終更新</span><span class="v">2021<small>年4月</small></span></div>
 </div>
 
 <div class="fix" id="naoshi">
