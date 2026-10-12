@@ -5,7 +5,7 @@ try:
     import budoux
 except ImportError:  # BudouX は python3.11 側に入っている
     os.execv("/Library/Frameworks/Python.framework/Versions/3.11/bin/python3", ["python3", *sys.argv])
-from urllib.parse import urlparse
+from urllib.parse import urlparse, quote
 
 D = pathlib.Path(__file__).parent / "data"
 E = html.escape
@@ -37,6 +37,7 @@ def summary_lines(text, n=2):
     lines, on = [], False
     for ln in text.splitlines():
         s = ln.strip()
+        if on and re.match(r"^-{3,}$", s): break
         if s.startswith("#"):
             if on: break
             on = "変更点サマリー" in s; continue
@@ -44,6 +45,33 @@ def summary_lines(text, n=2):
             lines.append(re.sub(r"\*\*(.+?)\*\*", r"\1", re.sub(r"^[-*]\s+", "", s)))
             if len(lines) == n: break
     return lines
+
+# ---- 出口の部品 ----
+def line_url(t): return "https://line.me/R/share?text=" + quote(t, safe="")
+def line_btns(t, label, kind, main=True):
+    c = "btn" if main else "btn sec sm"
+    return (f'<a class="{c}" href="{line_url(t)}" data-x="{kind}">{E(label)}</a>'
+            '<button type="button" class="btn sec sm">コピー</button>')
+HINT = '<p class="hint">LINEが開いたらユウキを選んで送信。開かなければコピーして貼る</p>'
+TXT = {"terms": "\n".join(f'{t["old"]}\t{t["new"]}' for t in terms)}
+assert len(terms) == 10
+
+def plain(lines):
+    o = []
+    for ln in lines:
+        x = re.sub(r"^\s*#{1,6}\s+", "", ln.rstrip())
+        x = re.sub(r"^\s*[-*]\s+", "・", x)
+        o.append(re.sub(r"\*\*(.+?)\*\*", r"\1", x))
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(o)).strip()
+
+def rw_parts(text):
+    ls = text.splitlines()
+    a = next(i for i, l in enumerate(ls) if re.match(r"^#\s", l))
+    b = next((i for i, l in enumerate(ls) if re.match(r"^##\s*迷った点", l)), len(ls))
+    body = plain(ls[a:b])
+    if not re.search(r"[。」）!！?？]$", body):  # 末尾が文で終わらない＝書き直し案が途中で切れている
+        print("WARN: 書き直し案の末尾が途中で切れている:", body.splitlines()[-1][:30])
+    return body, "\n".join("・" + x for x in summary_lines(text, None))
 
 # ---- 旧用語表 ----
 cnt = {t["old"]: 0 for t in terms}
@@ -81,16 +109,20 @@ for i, slug in enumerate(slugs, 1):
     f = D / f"rewrite{i}.md"
     orig = D / f"orig{i}.txt"
     head = f'<span class="dn">{i}</span><span class="ds"><b>{E(a["title"])}</b>'
-    meta_line = f'<span class="dm">旧用語 {a["total"]}箇所</span>'
+    meta_line = f'<span class="dm"><span>旧用語 {a["total"]}箇所</span></span>'
     if f.exists():
         t = f.read_text()
+        TXT[f"b{i}"], TXT[f"s{i}"] = rw_parts(t)
+        meta_line = f'<span class="dm"><span>旧用語 {a["total"]}箇所</span><span>要再確認 {TXT[f"b{i}"].count("【要再確認】")}箇所</span></span>'
+        acts = (f'<div class="act"><button type="button" class="btn" data-t="b{i}">本文をコピー</button>'
+                f'<button type="button" class="btn sec" data-t="s{i}">変更点だけコピー</button></div>')
         sl = summary_lines(t)
         sub = "".join(f'<span class="dl">{E(x)}</span>' for x in sl) or '<span class="dl">変更点サマリーは本文の冒頭にあります</span>'
         o = ""
         if orig.exists():
             paras = [p.strip() for p in re.split(r"\n\s*\n", orig.read_text().split("\n", 1)[-1]) if p.strip()]
             o = '<details class="orig"><summary>原文を見る</summary>' + "".join(f"<p>{E(re.sub(chr(10), ' ', p))}</p>" for p in paras) + "</details>"
-        rw.append(f'<details class="rw"><summary>{head}{sub}</span>{meta_line}</summary><div class="rwbody">{md(t)}{o}</div></details>')
+        rw.append(f'<details class="rw"><summary>{head}{sub}</span>{meta_line}</summary><div class="rwbody">{acts}{md(t)}{o}</div></details>')
     else:
         rw.append(f'<div class="rw pend">{head}<span class="dl">書き直し案は準備中</span></span>{meta_line}</div>')
 
@@ -102,16 +134,21 @@ def kanji(n):
     s = (("" if h == 1 else KAN[h]) + "百") if h else ""
     if t: s += ("" if t == 1 else KAN[t]) + "十"
     return s + (KAN[o] if o else "")
-cards = "".join(
-    f'<li class="card"><span class="no">{it["n"]}</span><div><span class="sn">第{kanji(it["n"])}の術式</span><h3>{E(it["name"])}</h3>'
-    f'<p class="io"><span class="lab">入力</span><span>{E(it["in"])}</span></p>'
-    f'<p class="io"><span class="lab">出力</span><span>{E(it["out"])}</span></p></li>'.replace("</p></li>", "</p></div></li>")
-    for it in menu["items"])
+def card(it):
+    msg = f'救世主の魔導書／術式{it["n"]}（{it["name"]}）を頼む'
+    return (f'<li class="card"><span class="no">{it["n"]}</span><div><span class="sn">第{kanji(it["n"])}の術式</span><h3>{E(it["name"])}</h3>'
+            f'<p class="io"><span class="lab">入力</span><span>{E(it["in"])}</span></p>'
+            f'<p class="io"><span class="lab">出力</span><span>{E(it["out"])}</span></p>'
+            f'<div class="act">{line_btns(msg, "この術式を頼む", "jutsu")}</div></div></li>')
+cards = "".join(card(it) for it in menu["items"])
 
 # ---- サウナ ----
-opts = "".join(
-    f'<div class="opt"><span class="k">{E(o["k"])}</span><div><span class="sn">巡礼の候補 {E(o["k"])}</span><h3>{E(o["dates"])}</h3><p>{E(o["note"])}</p></div></div>'
-    for o in sauna["options"])
+def opt(o):
+    msg = f'救世主の魔導書／巡礼は{o["k"]}（{o["dates"]}）で'
+    return (f'<div class="opt"><span class="k">{E(o["k"])}</span><div><span class="sn">巡礼の候補 {E(o["k"])}</span><h3>{E(o["dates"])}</h3><p>{E(o["note"])}</p>'
+            f'<div class="act">{line_btns(msg, o["k"] + "で行く", "ab")}</div></div></div>')
+opts = "".join(opt(o) for o in sauna["options"])
+ALT = line_btns("救世主の魔導書／巡礼は別の週で。候補: ", "別の週がいい", "alt", main=False)
 
 TITLE = "救世主の魔導書"
 DESC = "古き言葉を清め、十の術式を授ける書。"
@@ -229,6 +266,30 @@ footer .sh{margin-bottom:20px}
 footer b{display:block;font-size:min(24px,5vw);font-weight:900;margin:0 0 10px;letter-spacing:.02em;white-space:nowrap}
 footer .vo{display:block;font-size:14px;color:var(--ink);letter-spacing:.16em;margin-bottom:22px;font-weight:700}
 footer p{color:var(--mute);font-size:12.5px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;font:900 15px/1.3 var(--font);letter-spacing:.06em;white-space:nowrap;text-decoration:none;cursor:pointer;color:var(--ink);background:var(--acc);border:1px solid var(--acc);border-radius:0;-webkit-appearance:none;appearance:none}
+.btn.sec{background:transparent;border-color:var(--ink)}
+.btn.sm{padding:0 14px;font-size:14px}
+.btn:focus-visible,.exit:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.act{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.act .btn:not(.sm){flex:1 1 9em}
+.act.alt{justify-content:center;margin-top:12px}
+.hint{font-size:13px;color:var(--mute);line-height:1.7;margin-top:10px}
+.act.alt+.hint{text-align:center}
+.rwbody>.act{margin:0 0 20px}
+.dm{display:flex;flex-direction:column;align-items:flex-end}
+.fix{margin:26px 0 0;padding:20px 22px 22px;background:var(--card);border:1px solid var(--gold)}
+.fix h3{font-size:20px;font-weight:900;letter-spacing:.04em}
+.fix ol{list-style:none;counter-reset:s;margin:12px 0 0;padding:0;display:grid;gap:14px}
+.fix li{display:grid;grid-template-columns:1.5em 1fr;gap:10px;line-height:1.85;font-size:15.5px}
+.fix li::before{counter-increment:s;content:counter(s);font:900 32px/1.1 var(--num);color:var(--acc)}
+.subrow{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 12px;margin:40px 0 6px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.subrow h3.sub{margin:0;padding:0;border:0}
+.exits{display:grid;gap:12px;margin:0 0 30px;text-align:left}
+.exit{display:grid;grid-template-columns:auto 1fr auto;gap:12px 16px;align-items:center;padding:20px 22px;background:var(--card);border:1px solid var(--ink);color:var(--ink);text-decoration:none}
+.exit .no{font-size:44px;text-align:center}
+.exit h3{font-size:20px;font-weight:900;line-height:1.45}
+.exit p{color:var(--mute);font-size:14px;line-height:1.7;margin-top:2px}
+.exit::after{content:"→";font:900 22px/1 var(--num);color:var(--acc)}
 @media(max-width:1180px){
  thead{display:none}
  table,tbody{display:block;border:0;background:none}
@@ -263,7 +324,25 @@ footer p{color:var(--mute);font-size:12.5px}
  .tile{padding:12px 8px}
  .chip{white-space:normal;max-width:100%}
  .opt h3{font-size:16px}
+ .dm{flex-direction:row;gap:12px;align-items:flex-start}
+ .fix{padding:16px 14px 18px}
+ .exit{padding:16px 14px;gap:10px 12px}
+ .exit .no{font-size:36px}
 }
+'''
+
+JS = r'''(()=>{
+const fb=s=>{const t=document.createElement("textarea");t.value=s;t.style.cssText="position:fixed;top:0;opacity:0";document.body.appendChild(t);t.select();t.setSelectionRange(0,1e6);let ok=false;try{ok=document.execCommand("copy")}catch(e){}t.remove();return ok};
+const copy=async s=>{try{await navigator.clipboard.writeText(s);return true}catch(e){return fb(s)}};
+document.addEventListener("click",async e=>{
+ const b=e.target.closest("button.btn");if(!b)return;
+ const s=b.dataset.t?T[b.dataset.t]:new URL(b.previousElementSibling.href).searchParams.get("text");
+ const ok=await copy(s);
+ if(!b.dataset.o)b.dataset.o=b.textContent;
+ b.textContent=ok?"写した":"写せず";
+ clearTimeout(b._t);b._t=setTimeout(()=>{b.textContent=b.dataset.o},1500);
+});
+})();
 '''
 
 SIGIL = '''<symbol id="sigil" viewBox="0 0 200 200"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round"><circle cx="100" cy="100" r="96" stroke-width="1.4"/><circle cx="100" cy="100" r="91" stroke-width="3" stroke-dasharray="1 5.1" stroke-linecap="butt"/><circle cx="100" cy="100" r="84" stroke-width="1"/><path stroke-width="1.1" d="M100 34V20M100 29l6-6" transform="rotate(0.0 100 100)"/><path stroke-width="1.1" d="M100 34V22M94 18l6 6 6-6" transform="rotate(22.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M96 30l8-4" transform="rotate(45.0 100 100)"/><path stroke-width="1.1" d="M100 34l4-5-8-4 4-5" transform="rotate(67.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M100 29l6-6" transform="rotate(90.0 100 100)"/><path stroke-width="1.1" d="M100 34V22M94 18l6 6 6-6" transform="rotate(112.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M96 30l8-4" transform="rotate(135.0 100 100)"/><path stroke-width="1.1" d="M100 34l4-5-8-4 4-5" transform="rotate(157.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M100 29l6-6" transform="rotate(180.0 100 100)"/><path stroke-width="1.1" d="M100 34V22M94 18l6 6 6-6" transform="rotate(202.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M96 30l8-4" transform="rotate(225.0 100 100)"/><path stroke-width="1.1" d="M100 34l4-5-8-4 4-5" transform="rotate(247.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M100 29l6-6" transform="rotate(270.0 100 100)"/><path stroke-width="1.1" d="M100 34V22M94 18l6 6 6-6" transform="rotate(292.5 100 100)"/><path stroke-width="1.1" d="M100 34V20M96 30l8-4" transform="rotate(315.0 100 100)"/><path stroke-width="1.1" d="M100 34l4-5-8-4 4-5" transform="rotate(337.5 100 100)"/><circle cx="100" cy="100" r="62" stroke-width="1"/><circle cx="100" cy="100" r="59" stroke-width="4" stroke-dasharray="0.8 3.2" stroke-linecap="butt"/><circle cx="100" cy="100" r="46" stroke-width="1" stroke-dasharray="6 3"/><circle cx="100" cy="100" r="30" stroke-width="1"/><circle cx="100" cy="100" r="10" stroke-width="1"/><circle cx="100" cy="100" r="2" fill="currentColor"/></g></symbol>'''
@@ -277,6 +356,7 @@ CORNER = ('<symbol id="corner" viewBox="0 0 60 60"><g fill="none" stroke="curren
  '<circle cx="2" cy="52" r="1.2" fill="currentColor"/><circle cx="52" cy="2" r="1.2" fill="currentColor"/></g></symbol>')
 sep = '<div class="sep"><svg class="ring" aria-hidden="true"><use href="#ring"/></svg></div>'
 
+TJ = json.dumps(TXT, ensure_ascii=False).replace('<', '\u003c')
 page = f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -332,19 +412,28 @@ page = f'''<!doctype html>
 <div class="tile"><span class="l">最終更新</span><span class="v">2021<small>年4月</small></span></div>
 </div>
 
-<h3 class="sub">旧き名と、いまの名</h3>
+<div class="fix" id="naoshi">
+<h3>直し方（三手）</h3>
+<ol>
+<li><span>置換表を手元に置きます。<a href="#terms">旧き名の表</a>の見出しの横のボタンで、旧い名といまの名を10組コピーできます。貼り先はWordPressの検索置換プラグイン。タブ区切りなので、そのまま貼れる形です。</span></li>
+<li><span>旧用語の多い記事から順に直します。<a href="#arts">{kanji(NA)}の章</a>の表は、多い順の並びです。記事名から元の記事を開けます。</span></li>
+<li><span>上位三章は、<a href="#kijutsu">浄書の試み</a>をそのまま使えます。各案に「本文をコピー」のボタンつき。【要再確認】の印だけ、自分の目で確かめて消してください。</span></li>
+</ol>
+</div>
+
+<div class="subrow" id="terms"><h3 class="sub">旧き名と、いまの名</h3><button type="button" class="btn sec sm" data-t="terms">置換表をコピー</button></div>
 <p class="note">ブログ内で使われている古い呼び方と、いまの公式名称です。</p>
 <table class="terms"><thead><tr><th>旧用語</th><th>現行</th><th>メモ</th><th class="num">件数</th><th>根拠</th></tr></thead><tbody>
 {term_rows}
 </tbody></table>
 
-<h3 class="sub">{kanji(NA)}の章</h3>
+<h3 class="sub" id="arts">{kanji(NA)}の章</h3>
 <p class="note">旧用語が多い順です。タイトルから元の記事を開けます。</p>
 <table><thead><tr><th>タイトル</th><th>日付</th><th class="num">文字数</th><th>旧用語の内訳</th><th class="num">件数</th></tr></thead><tbody>
 {art_rows}
 </tbody></table>
 
-<h3 class="sub">浄書の試み（上位三章）</h3>
+<h3 class="sub" id="kijutsu">浄書の試み（上位三章）</h3>
 <p class="note">旧用語が特に多かった3本です。</p>
 <div class="rws">
 {"".join(rw)}
@@ -355,6 +444,7 @@ page = f'''<!doctype html>
 <section id="ai">
 <div class="sh"><span class="ch">第Ⅱ章</span><span class="n">Ⅱ</span><h2>十の<ruby>術式<rt>アルス</rt></ruby></h2></div>
 <p class="note">{E(menu["lead"])}</p>
+{HINT}
 <ol class="cards">{cards}</ol>
 </section>
 
@@ -364,16 +454,25 @@ page = f'''<!doctype html>
 <p class="note">{E(sauna["lead"])}</p>
 <div class="opts">{opts}</div>
 <p class="ask">AかBか。どちらも難しければ、別の地平線を。</p>
+<div class="act alt">{ALT}</div>
+{HINT}
 </section>
 
 {sep}
 <footer id="ketsu">
 <div class="sh"><h2>結</h2></div>
+<div class="exits">
+<a class="exit" href="#ai"><span class="no">1</span><div><h3>術式を選ぶ</h3><p>十の術式から、先に作ってほしい1つを決める</p></div></a>
+<a class="exit" href="#sauna"><span class="no">2</span><div><h3>巡礼の日を決める</h3><p>AかBか、別の週かを返す</p></div></a>
+<a class="exit" href="#naoshi"><span class="no">3</span><div><h3>記事を直す</h3><p>置換表と浄書の案で、古い記事を自分で直す</p></div></a>
+</div>
 <b>汝の答えは、番号ひとつでよい。</b>
 <span class="vo">——それでは、よい旅を</span>
 <p>契約の証として、この書は検索に出ない。救世主ただひとりに渡している。</p>
 </footer>
 </div>
+<script>const T={TJ};
+{JS}</script>
 </body></html>
 '''
 # 文節の切れ目に <wbr> を焼き込む（語中改行を防ぐ。keep-all と組む）
@@ -381,7 +480,7 @@ P = budoux.load_default_japanese_parser()
 CJK = re.compile(r"[\u3040-\u30ff\u4e00-\u9fff]")
 OPEN = re.compile(r"([「『（(【〈《［\[“])")  
 def nb(c):  # 開き括弧を含む文節は丸ごと折り返さない
-    return f'<span class="nb">{E(c)}</span>' if OPEN.search(c) else E(c)
+    return f'<span class="nb">{E(c)}</span>' if OPEN.search(c) and len(c) <= 9 else E(c)
 def chunks(t):
     r = []
     for c in P.parse(t):
@@ -396,7 +495,7 @@ def phrase(body):
             if m: skip += -1 if m.group(1) else 1
             out.append(tok)
         elif not skip and CJK.search(tok):
-            out.append("<wbr>".join(E(c) for c in chunks(html.unescape(tok))))
+            out.append("<wbr>".join(nb(c) for c in chunks(html.unescape(tok))))
         else:
             out.append(tok)
     return "".join(out)
