@@ -254,6 +254,7 @@ footer p{color:var(--mute);font-size:12.5px}
  .seal{width:22px;height:22px;font-size:13px;line-height:18px}
  .eyebrow{letter-spacing:.3em;gap:8px}.eyebrow::before,.eyebrow::after{width:20px}
  .sh .n{font-size:56px}
+ h2 ruby.ov{margin-right:-14px}
  .rw>summary,.rw.pend{flex-wrap:wrap;padding:14px}
  .rw>summary::after{margin-left:calc(1.1em + 14px)}
  .dm{margin-left:calc(1.1em + 14px);flex-basis:100%}
@@ -359,7 +360,7 @@ page = f'''<!doctype html>
 
 {sep}
 <section id="sauna">
-<div class="sh"><span class="ch">第Ⅲ章</span><span class="n">Ⅲ</span><h2><ruby>巡礼<rt>ピルグリメイジ</rt></ruby>の日取り</h2></div>
+<div class="sh"><span class="ch">第Ⅲ章</span><span class="n">Ⅲ</span><h2><ruby class="ov">巡礼<rt>ピルグリメイジ</rt></ruby>の日取り</h2></div>
 <p class="note">{E(sauna["lead"])}</p>
 <div class="opts">{opts}</div>
 <p class="ask">AかBか。どちらも難しければ、別の地平線を。</p>
