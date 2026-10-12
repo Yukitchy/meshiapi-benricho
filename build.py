@@ -125,7 +125,7 @@ CSS = r'''
 *{box-sizing:border-box;min-width:0}
 html,body{max-width:100%;overflow-x:hidden}
 h1,h2,h3,h4,p{margin:0}
-:root{color-scheme:dark;--bg:#0b0b0d;--card:#141317;--ink:#e8e4da;--mute:#9a948a;--acc:#b3122e;--gold:#c9a84c;--line:rgba(201,168,76,.28);--font:"Noto Sans JP","Hiragino Sans",-apple-system,sans-serif;--num:Inter,"Noto Sans JP",sans-serif}
+:root{color-scheme:dark;--bg:#0b0b0d;--card:#141317;--ink:#e8e4da;--mute:#9a948a;--acc:#c4182f;--gold:#c9a84c;--line:rgba(201,168,76,.28);--font:"Noto Sans JP","Hiragino Sans",-apple-system,sans-serif;--num:Inter,"Noto Sans JP",sans-serif}
 body{margin:0;padding:28px 20px 48px;font:400 16px/1.85 var(--font);color:var(--ink);background:var(--bg);word-break:keep-all;overflow-wrap:break-word}
 a{color:var(--ink);text-decoration-line:underline;text-decoration-color:var(--acc);text-decoration-thickness:2px;text-underline-offset:4px}
 ruby{ruby-position:over;ruby-align:center}
